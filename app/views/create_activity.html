@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app>
+<head lang="en" >
+    <meta charset="UTF-8">
+    <title>party_bid</title>
+    <link href="./styles/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="./styles/font-awesome.min.css" rel="stylesheet" media="screen">
+    <link href="./styles/android.css" rel="stylesheet" media="screen">
+
+    <script src="./scripts/js/jquery-2.0.0.min.js"></script>
+    <script src="./scripts/js/bootstrap.min.js"></script>
+</head>
+<body ng-controller="createActivityCtrl">
+    <div>
+        <div class="no-footer">
+            <header>
+                创建活动
+                <div class="header-left">
+                    <a href="" class="btn-style btn-4" ng-show="ifnotback" ng-click="back_to_list()">返回</a>
+                </div>
+
+            </header>
+        </div>
+        <div id="wrapper" class="wrapper scrollable">
+            <form class="wrapper-inner">
+                <fieldset class="form-wrapper">
+                    <br>
+                    <br>
+                    <br>
+                    <div>
+                        <h5>活动名称</h5>
+                        <textarea   cols="30" rows="1" class="input-full" ng-model="activityName" placeholder="enter activity name"></textarea>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <div>
+                    <button  class="btn btn-2" ng-click="add_new_activity()" ng-disabled="!activityName">创建</button>
+                    </div>
+                </fieldset>
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>

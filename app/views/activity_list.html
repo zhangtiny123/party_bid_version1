@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>party_bid</title>
+    <link href="./styles/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="./styles/font-awesome.min.css" rel="stylesheet" media="screen">
+    <link href="./styles/android.css" rel="stylesheet" media="screen">
+
+
+
+    <script type="application/javascript" src="js/iscroll-lite.js"></script>
+</head>
+<body ng-controller="activityListCtrl">
+<header>
+    活动列表
+    <div class="header-right">
+        <button class="btn-style btn-4" ng-click="crea_activity()">创建活动</button>
+    </div>
+</header>
+    <div id="wrapper" class="wrapper">
+        <ul class="list-style-2">
+            <li ng-repeat="activity in activities " ng-click="skip_to_activitySignUp()">
+                <a >{{activity}} <i class="icon-angle-right"></i>
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+
+</body>
+</html>
