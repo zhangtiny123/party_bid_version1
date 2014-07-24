@@ -8,7 +8,7 @@
 
 
 
-    <script type="application/javascript" src="js/iscroll-lite.js"></script>
+    <!--<script type="application/javascript" src="js/iscroll-lite.js"></script>-->
 </head>
 <body ng-controller="activityListCtrl">
 <header>
@@ -19,8 +19,8 @@
 </header>
     <div id="wrapper" class="wrapper">
         <ul class="list-style-2">
-            <li  ng-repeat="activity in activities " ng-click="skip_to_activitySignUp()">
-                <a >{{activity}} <i class="icon-angle-right"></i>
+            <li   ng-repeat="activity in activities " ng-click="skip_to_activitySignUp(activity)">
+                <a class="{{activity.nameof_activity==current_activity_name && activity.activity_status==1}}">{{activity.nameof_activity}} <i class="icon-angle-right"></i>
                 </a>
             </li>
 

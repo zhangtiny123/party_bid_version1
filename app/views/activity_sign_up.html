@@ -3,7 +3,7 @@
 
 <body>
 <header ng-controller="activitySignUpCtrl">
-    报名
+    报名({{num_of_sign}}人）
     <div class="header-right" >
         <a class="btn-style btn-4" ng-click="start_sign_up()">{{buttonName}}</a>
     </div>
@@ -11,10 +11,14 @@
         <a class=" btn-style btn-4" ng-click="back_to_activityList()">返回</a>
     </div>
 </header>
-<div>
-    <ul>
-        <li>
+<div class="wrapper">
+    <ul class="list-style-1">
+        <li ng-repeat="person in persons">
+            <a>
+                <h3>{{person.name}}<i class="icon-angle-right"></i></h3>
+                <p>{{person.phone}}</p>
 
+            </a>
         </li>
     </ul>
 </div>
