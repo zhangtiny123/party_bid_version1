@@ -1,33 +1,31 @@
+<div id="sign_wrapper" ng-controller="activitySignUpCtrl">
 
-<html ng-app>
+    <header >
 
-<body>
-<header ng-controller="activitySignUpCtrl">
-    报名({{num_of_sign}}人）
-    <div class="header-right" >
-        <a class="btn-style btn-4" ng-click="start_sign_up()">{{buttonName}}</a>
+        报名({{num_of_sign}}人）
+        <div class="header-right" >
+            <button class="btn-style btn-4" ng-click="start_sign_up()" ng-disabled="button_enable">{{buttonName}}</button>
+        </div>
+        <div class="header-left">
+            <button class=" btn-style btn-4" ng-click="back_to_activityList()">返回</button>
+        </div>
+    </header>
+    <div class="wrapper">
+        <ul class="list-style-1">
+            <li ng-repeat="person in persons">
+                <a>
+                    <h3>{{person.name}}<i class="icon-angle-right"></i></h3>
+                    <p>{{person.phone}}</p>
+
+                </a>
+            </li>
+        </ul>
     </div>
-    <div class="header-left">
-        <a class=" btn-style btn-4" ng-click="back_to_activityList()">返回</a>
-    </div>
-</header>
-<div class="wrapper">
-    <ul class="list-style-1">
-        <li ng-repeat="person in persons">
-            <a>
-                <h3>{{person.name}}<i class="icon-angle-right"></i></h3>
-                <p>{{person.phone}}</p>
 
-            </a>
-        </li>
-    </ul>
+    <footer>
+        <ul class="footer-nav footer-nav-2tabs">
+            <li class="active"><a ng-click="click_sign_up()"><i class="icon-group"></i><br />报名</a></li>
+            <li><a ng-click="click_biding()"><i class="icon-comments"></i><br />竞价</a></li>
+        </ul>
+    </footer>
 </div>
-
-<footer>
-    <ul class="footer-nav footer-nav-2tabs">
-        <li class="active"><a ng-click="click_sign_up()"><i class="icon-group"></i><br />报名</a></li>
-        <li><a ng-click="click_biding()"><i class="icon-comments"></i><br />竞价</a></li>
-    </ul>
-</footer>
-</body>
-</html>

@@ -30,5 +30,5 @@ angular.module('partyBidApp')
         arr1 = arr1.reverse();
         $scope.activities=arr1;
 
-        $scope.current_activity_name = JSON.parse(localStorage['current_activity']).nameof_activity;
+
     });
