@@ -46,6 +46,14 @@ angular.module('partyBidApp')
                 localStorage['current_activity'] = JSON.stringify(temp4);
 
 
+                //将正在报名的活动设置为当前活动
+
+                var trans_temp = JSON.parse(localStorage['current_activity']);
+                console.log('当前活动：'+trans_temp)
+                localStorage['signing_activity'] = JSON.stringify(trans_temp);
+
+
+
                 //将activities中的当前报名中的活动状态设置为1,即正在报名
                 var temp5 = JSON.parse(localStorage['activities']);
                 for (var i=0; i<temp5.length; i++){
@@ -62,6 +70,8 @@ angular.module('partyBidApp')
                 if (con == true){
                     $scope.buttonName = '开始';
                     localStorage['start_tag'] = JSON.stringify(0);
+
+                    localStorage['signing_activity'] = JSON.stringify([]);
 
 
                     //将current_activity的activity_status设置为2,即报名已经结束

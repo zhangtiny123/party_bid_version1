@@ -52,6 +52,9 @@ angular.module('partyBidApp')
                 //再单独存一组当前输入的活动名称
                 localStorage['current_activity'] = JSON.stringify(activity_created);
 
+                //保存当前正在进行报名的活动
+                localStorage['signing_activity'] = JSON.stringify([]);
+
                 //作为报名者信息存储用
                 localStorage[$scope.activityName] = JSON.stringify([]);
 

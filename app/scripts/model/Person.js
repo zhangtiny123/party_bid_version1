@@ -19,7 +19,7 @@ Person.save = function(json_message){
 
     var isStarted = JSON.parse(localStorage['start_tag']) == 1;
     var isNotStart = JSON.parse(localStorage['current_activity']).activity_status == 0;
-    var isSigning = JSON.parse(localStorage['current_activity']).activity_status == 1;
+    var isSigning = JSON.parse(localStorage['signing_activity']).activity_status == 1;
     var isEnded = JSON.parse(localStorage['current_activity']).activity_status == 2;
     var isRightChar = (start_chars == 'bm' || start_chars == 'BM');
     var isNotRepeated = !Person.isRepeated(json_message);
@@ -41,11 +41,12 @@ Person.save = function(json_message){
         //组成数组元素person_item
         var person_item = {'name':person_name,'phone':phone_number};
 
-        //读出当前活动名作为其报名列表的数组名
-        var result = Person.read_person_item();
 
-        var stored = JSON.parse(localStorage['current_activity']).nameof_activity;
+
+        //读出当前活动名作为其报名列表的数组名
+        var stored = JSON.parse(localStorage['signing_activity']).nameof_activity;
         var result = JSON.parse(localStorage[stored]);
+
 
         result.push(person_item);
 
@@ -80,7 +81,8 @@ Person.save = function(json_message){
  */
 Person.isRepeated = function(json_message) {
 
-    var item_temp = Person.read_person_item();
+    var r_temp = JSON.parse(localStorage['signing_activity']).nameof_activity;
+    var item_temp = JSON.parse(localStorage[r_temp]);
 
     var person_name = json_message.messages[0].message.slice(2);
     var phone_number = json_message.messages[0].phone;
