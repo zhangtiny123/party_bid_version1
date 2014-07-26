@@ -6,14 +6,14 @@ angular.module('partyBidApp')
     .controller('activitySignUpCtrl',function($scope,$location){
 
         /**
-         * 7.25从这里开始，根据当前活动的状态和start_tag控制开始结束按钮
-         * 然后接收短信，回发短信，正在报名的活动显示黄色
-         * 报名页面动态刷新
+         *
+         *
+         *
          * 问老师关于activity_list页面点击活动，然后current_activity中出现一个“$$hashkey:00t”之类的
          */
         if (JSON.parse(localStorage['start_tag']) == 0 || JSON.parse(localStorage['current_activity']).activity_status != 1){
-            console.log(JSON.parse(localStorage['start_tag']));
-            console.log(JSON.parse(localStorage['current_activity']).activity_status != 1);
+//            console.log('start_tag'+JSON.parse(localStorage['start_tag']));
+//            console.log(JSON.parse(localStorage['current_activity']).activity_status != 1);
             $scope.buttonName='开始';
         }
         else if(JSON.parse(localStorage['start_tag']) == 1 && JSON.parse(localStorage['current_activity']).activity_status == 1){
@@ -49,7 +49,7 @@ angular.module('partyBidApp')
                 //将正在报名的活动设置为当前活动
 
                 var trans_temp = JSON.parse(localStorage['current_activity']);
-                console.log('当前活动：'+trans_temp)
+//                console.log('当前活动：'+trans_temp)
                 localStorage['signing_activity'] = JSON.stringify(trans_temp);
 
 
@@ -71,7 +71,9 @@ angular.module('partyBidApp')
                     $scope.buttonName = '开始';
                     localStorage['start_tag'] = JSON.stringify(0);
 
-                    localStorage['signing_activity'] = JSON.stringify([]);
+                    var end_temp = JSON.parse(localStorage['signing_activity']);
+                    end_temp.activity_status = 2;
+                    localStorage['signing_activity'] = JSON.stringify(end_temp);
 
 
                     //将current_activity的activity_status设置为2,即报名已经结束
@@ -83,7 +85,7 @@ angular.module('partyBidApp')
                     //将activities中的当前报名中的活动状态设置为2,即报名已经结束
                     var temp7 = JSON.parse(localStorage['activities']);
                     for (var i=0; i<temp7.length; i++){
-                        if (temp7[i].nameof_activity == temp6.nameof_activity){
+                        if (temp7[i].nameof_activity == end_temp.nameof_activity){
                             temp7[i].activity_status = 2;
                         }
                     }

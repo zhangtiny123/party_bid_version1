@@ -23,7 +23,7 @@ angular.module('partyBidApp')
             localStorage['current_activity'] = JSON.stringify(val1);
 
             $location.path('/activity_sign_up');
-            console.log(val1);
+//            console.log(val1);
         }
 
         var arr1=JSON.parse(localStorage['activities']);

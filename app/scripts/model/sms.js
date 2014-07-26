@@ -5,6 +5,7 @@
 var native_accessor = {
     send_sms: function (phone, message) {
 //        native_access.send_sms({"receivers":[{"name":'name', "phone":phone}]}, {"message_content":message});
+
         console.log('phone:'+phone);
         console.log('message:'+message);
 
@@ -18,6 +19,7 @@ var native_accessor = {
 
     process_received_message: function (json_message) {
 
+        console.log('runned process_received_message');
         Person.save(json_message);
     }
 

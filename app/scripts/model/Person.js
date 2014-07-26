@@ -13,62 +13,64 @@ function Person (name,phone_num){
  * @param json_message
  */
 Person.save = function(json_message){
-
-
-    var start_chars = json_message.messages[0].message.slice(0,2);
-
-    var isStarted = JSON.parse(localStorage['start_tag']) == 1;
-    var isNotStart = JSON.parse(localStorage['current_activity']).activity_status == 0;
-    var isSigning = JSON.parse(localStorage['signing_activity']).activity_status == 1;
-    var isEnded = JSON.parse(localStorage['current_activity']).activity_status == 2;
-    var isRightChar = (start_chars == 'bm' || start_chars == 'BM');
-    var isNotRepeated = !Person.isRepeated(json_message);
-    console.log('不重复:'+isNotRepeated);
-    console.log('未开始：'+isNotStart);
-    console.log('正在报名：'+isSigning);
-    console.log('已结束：'+isEnded);
-    console.log('正确的开头：'+isRightChar);
+    console.log('runned save function');
 
 
     //读出json_message中的数据
+    var start_chars = json_message.messages[0].message.slice(0,2);
+    console.log('首字符'+start_chars);
     var person_name = json_message.messages[0].message.slice(2);
     var phone_number = json_message.messages[0].phone;
 
 
-    if (isStarted && isSigning && isRightChar && isNotRepeated){
-
-        console.log('是否报名成功:'+(isStarted && isSigning && isRightChar && isNotRepeated))
-        //组成数组元素person_item
-        var person_item = {'name':person_name,'phone':phone_number};
+    //组成数组元素person_item
+    var person_item = {'name':person_name,'phone':phone_number};
 
 
-
-        //读出当前活动名作为其报名列表的数组名
-        var stored = JSON.parse(localStorage['signing_activity']).nameof_activity;
-        var result = JSON.parse(localStorage[stored]);
-
-
-        result.push(person_item);
-
-        localStorage[stored] = JSON.stringify(result);
+    var isStarted = (JSON.parse(localStorage['start_tag']) == 1);
+    console.log('是否开始：'+isStarted);
+    var isRightChar = (start_chars == 'bm' || start_chars == 'BM');
+    console.log('正确的开头：'+isRightChar);
+    var curr = JSON.parse(localStorage['current_activity']);
 
 
-        Page_Refresh();
-        native_accessor.send_sms(phone_number,'恭喜！报名成功');
-
-    }
-
-    else if (!isStarted && isNotStart) {
+    if (!isStarted && (curr.activity_status == 0)){
         native_accessor.send_sms(phone_number,'活动尚未开始，请稍候……');
     }
 
-    else if (!isStarted && isEnded) {
-        native_accessor.send_sms(phone_number,'活动已经结束')
+    else if (!isRightChar){
+        native_accessor.send_sms(phone_number,'短信格式不正确！');
     }
 
-    else if (!isNotRepeated) {
+    else if (!isStarted && (curr.activity_status == 2)){
+        native_accessor.send_sms(phone_number,'活动已经结束');
+    }
 
-        native_accessor.send_sms(phone_number,'已经报名成功，请勿重复报名！')
+    else {
+        var isNotRepeated = !Person.isRepeated(json_message);
+        console.log('不重复:'+isNotRepeated);
+
+
+
+        if(isNotRepeated){
+
+            //读出当前活动名作为其报名列表的数组名
+            var stored = JSON.parse(localStorage['signing_activity']).nameof_activity;
+            var result = JSON.parse(localStorage[stored]);
+
+
+            result.push(person_item);
+
+            localStorage[stored] = JSON.stringify(result);
+
+
+            Page_Refresh();
+            native_accessor.send_sms(phone_number,'恭喜！报名成功');
+        }
+        else {
+            native_accessor.send_sms(phone_number,'你已经报名成功，请勿重复报名');
+        }
+
     }
 
 }

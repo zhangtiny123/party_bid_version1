@@ -8,6 +8,7 @@
  *
  * Main module of the application.
  */
+
 angular
   .module('partyBidApp', [
     'ngAnimate',
@@ -38,4 +39,5 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+
   });
