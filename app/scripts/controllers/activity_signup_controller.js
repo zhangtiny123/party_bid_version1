@@ -18,13 +18,13 @@ angular.module('partyBidApp')
 
 
         $scope.button_enable = !((JSON.parse(localStorage['current_activity']).activity_status==1 && JSON.parse(localStorage['start_tag']==1))
-            || JSON.parse(localStorage['start_tag'])==0)
+            || (JSON.parse(localStorage['start_tag'])==0 && JSON.parse(localStorage['current_activity']).activity_status==0))
 
 
 
         $scope.start_sign_up = function() {
 
-            if ($scope.buttonName == '开始'){
+            if ($scope.buttonName == '开始' && JSON.parse(localStorage['current_activity']).activity_status!=2){
                 $scope.buttonName='结束';
 
                 localStorage['start_tag'] = JSON.stringify(1);
@@ -69,6 +69,7 @@ angular.module('partyBidApp')
                     //将current_activity的activity_status设置为2,即报名已经结束
                     var temp6 = JSON.parse(localStorage['current_activity']);
                     temp6.activity_status = 2;
+                    console.log('current_activity_status:'+temp6.activity_status);
                     localStorage['current_activity'] = JSON.stringify(temp6);
 
 
