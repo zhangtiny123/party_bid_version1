@@ -14,13 +14,16 @@ angular.module('partyBidApp')
         }
 
 
-        $scope.crea_activity = function(){
+        $scope.create_activity = function(){
             $location.path('/create_activity');
         }
 
-        $scope.skip_to_activitySignUp = function(val1) {
+        $scope.skip_to_activitySignUp = function(value1) {
+
+            var p_temp = new Activity(value1.nameof_activity,value1.activity_status);
+            
 //            var current_value = localStorage.getItem('current_activity_name');
-            localStorage['current_activity'] = JSON.stringify(val1);
+            localStorage['current_activity'] = JSON.stringify(p_temp);
 
             $location.path('/activity_sign_up');
 //            console.log(val1);
