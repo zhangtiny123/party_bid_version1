@@ -16,11 +16,7 @@ angular.module('partyBidApp')
             localStorage['start_tag'] = JSON.stringify(0);
         }
 
-        /**
-         * function:返回按钮是否可用标志
-         * author:~~
-         * date:7.24
-         */
+
         if (JSON.parse(localStorage['activities']).length==0){
             $scope.ifnotback=false;
         }
@@ -29,11 +25,9 @@ angular.module('partyBidApp')
         }
 
 
-        /**
-         * fuction:添加新的活动，如果有重复提示活动名重复，重新输入
-         * author:~~
-         */
+
         $scope.add_new_activity = function(){
+
             //判断是否与已有活动名重复
             var temp = JSON.parse(localStorage['activities']);;
             for (var i=0; i<temp.length; i++){
@@ -46,8 +40,8 @@ angular.module('partyBidApp')
             if (tag == 0) {
                 var activity_created = new Activity($scope.activityName,0);
 
-                temp.push(activity_created);                      //将输入的活动名称加入数组的末尾
-                localStorage['activities'] = JSON.stringify(temp);   //存入loacalStorage
+                temp.push(activity_created);
+                localStorage['activities'] = JSON.stringify(temp);
 
                 //再单独存一组当前输入的活动名称
                 localStorage['current_activity'] = JSON.stringify(activity_created);

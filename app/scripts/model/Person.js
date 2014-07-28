@@ -8,10 +8,7 @@ function Person (name,phone_num){
 }
 
 
-/**********************************************************************************************************************
- * description: 在活动正在进行报名且满足报名条件的，存储报名信息到localStorage
- * @param json_message
- */
+
 Person.save = function(json_message){
     console.log('runned save function');
 
@@ -50,21 +47,16 @@ Person.save = function(json_message){
         var isNotRepeated = !Person.isRepeated(json_message);
         console.log('不重复:'+isNotRepeated);
 
-
-
         if(isNotRepeated){
-
-            //读出当前活动名作为其报名列表的数组名
             var stored = JSON.parse(localStorage['signing_activity']).nameof_activity;
             var result = JSON.parse(localStorage[stored]);
 
 
             result.push(person_item);
-
             localStorage[stored] = JSON.stringify(result);
 
 
-            Page_Refresh();
+            Person.signed_person_list_pageRefresh();
             native_accessor.send_sms(phone_number,'恭喜！报名成功');
         }
         else {
@@ -76,11 +68,7 @@ Person.save = function(json_message){
 }
 
 
-/**********************************************************************************************************************
- * description: 判断是否重复报名
- * @param json_message
- * @returns {boolean}
- */
+
 Person.isRepeated = function(json_message) {
 
     var r_temp = JSON.parse(localStorage['signing_activity']).nameof_activity;
@@ -92,7 +80,6 @@ Person.isRepeated = function(json_message) {
     for (var i=0; i < item_temp.length; i++){
         if (item_temp[i].name == person_name && item_temp[i].phone == phone_number){
             return true;
-
         }
 
     }
@@ -100,13 +87,25 @@ Person.isRepeated = function(json_message) {
 }
 
 
-/**********************************************************************************************************************
- * description: 返回当前活动已报名的列表
- * @returns {person_item}返回报名名单信息的数组
- */
+
 Person.read_person_item = function() {
     var read_temp = JSON.parse(localStorage['current_activity']).nameof_activity;
     var read_temp1 = JSON.parse(localStorage[read_temp]);
 
     return read_temp1;
+}
+
+
+Person.signed_person_list_pageRefresh = function() {
+    var refresh_page = document.getElementById("sign_wrapper");
+    if (refresh_page) {
+        var scope = angular.element(refresh_page).scope();
+        scope.$apply(function () {
+            var during_name= JSON.parse(localStorage['signing_activity']).nameof_activity;
+            var result=JSON.parse(localStorage[during_name]);
+            result = result.reverse();
+            scope.persons= result;
+            scope.number_of_sign=result.length;
+        })
+    }
 }

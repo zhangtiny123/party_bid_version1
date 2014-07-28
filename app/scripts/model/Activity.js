@@ -8,11 +8,3 @@ function Activity(activity_name,activity_status) {
 }
 
 
-/**
- * 获取存储在本地的当前活动名称
- * @returns {current_activity_name}
- */
-//activity.get_current_activity = function() {
-//    return JSON.parse(localStorage['current_activity_name']);
-//}
-

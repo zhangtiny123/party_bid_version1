@@ -2,7 +2,7 @@
 
     <header >
 
-        报名({{num_of_sign}}人）
+        报名({{number_of_sign}}人）
         <div class="header-right" >
             <button class="btn-style btn-4" ng-click="start_sign_up()" ng-disabled="button_enable">{{buttonName}}</button>
         </div>
@@ -13,11 +13,8 @@
     <div class="wrapper">
         <ul class="list-style-6">
             <li class = "clearfix btn-default" ng-repeat="person in persons">
-                
-                    <h3>{{person.name}}</i></h3>
+                    <h3>{{person.name}}</h3>
                     <i>{{person.phone}}</i>
-
-                
             </li>
         </ul>
     </div>

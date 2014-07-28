@@ -5,12 +5,7 @@
 angular.module('partyBidApp')
     .controller('activitySignUpCtrl',function($scope,$location){
 
-        /**
-         *
-         *
-         *
-         * 问老师关于activity_list页面点击活动，然后current_activity中出现一个“$$hashkey:00t”之类的
-         */
+
         if (JSON.parse(localStorage['start_tag']) == 0 || JSON.parse(localStorage['current_activity']).activity_status != 1){
 //            console.log('start_tag'+JSON.parse(localStorage['start_tag']));
 //            console.log(JSON.parse(localStorage['current_activity']).activity_status != 1);
@@ -21,17 +16,12 @@ angular.module('partyBidApp')
         }
 
 
-        /**
-         * 判断报名页面返回按钮是否可用
-         * @returns {boolean}false表示可用，true表示不可用
-         */
+
         $scope.button_enable = !((JSON.parse(localStorage['current_activity']).activity_status==1 && JSON.parse(localStorage['start_tag']==1))
             || JSON.parse(localStorage['start_tag'])==0)
 
 
-        /**
-         *
-         */
+
         $scope.start_sign_up = function() {
 
             if ($scope.buttonName == '开始'){
@@ -99,36 +89,28 @@ angular.module('partyBidApp')
         }
 
 
-        //nun_of_sign统计已报名的人数
-        $scope.num_of_sign = Person.read_person_item().length;
+
+        $scope.number_of_sign = Person.read_person_item().length;
 
 
-        /**
-         * 访问当前活动报名列表，将其显示在报名页面
-         */
+
         var stored_name = JSON.parse(localStorage['current_activity']);
         $scope.persons = (JSON.parse(localStorage[stored_name.nameof_activity])).reverse();
 
 
-        /**
-         * 返回活动列表页面
-         */
+
         $scope.back_to_activityList = function() {
             $location.path('/activity_list');
         }
 
 
-        /**
-         * 切换至活动报名页面
-         */
+
         $scope.click_sign_up = function(){
             $location.path('/activity_sign_up');
         }
 
 
-        /**
-         * 切换至竞价页面
-         */
+
         $scope.click_biding = function(){
 
         }
