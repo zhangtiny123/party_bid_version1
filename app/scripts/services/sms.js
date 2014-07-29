@@ -19,7 +19,7 @@ var native_accessor = {
 
     process_received_message: function (json_message) {
 
-        console.log('runned process_received_message');
+
         Person.save(json_message);
     }
 

@@ -78,7 +78,7 @@ Person.isRepeated = function(json_message) {
     var phone_number = json_message.messages[0].phone;
 
     for (var i=0; i < item_temp.length; i++){
-        if (item_temp[i].name == person_name && item_temp[i].phone == phone_number){
+        if ( item_temp[i].phone == phone_number){
             return true;
         }
 
@@ -101,7 +101,7 @@ Person.signed_person_list_pageRefresh = function() {
     if (refresh_page) {
         var scope = angular.element(refresh_page).scope();
         scope.$apply(function () {
-            var during_name= JSON.parse(localStorage['signing_activity']).nameof_activity;
+            var during_name= JSON.parse(localStorage['current_activity']).nameof_activity;
             var result=JSON.parse(localStorage[during_name]);
             result = result.reverse();
             scope.persons= result;
