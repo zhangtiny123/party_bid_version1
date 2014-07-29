@@ -49,7 +49,7 @@ angular.module('partyBidApp')
 
                 //作为是否有活动开始标志
                 localStorage['start_tag'] = JSON.stringify(0);
-                $location.path('/activity_sign_up');
+                $location.path('/activity_sign_up/'+activity_created.nameof_activity);
             }
 
 //            //判断是否与已有活动名重复

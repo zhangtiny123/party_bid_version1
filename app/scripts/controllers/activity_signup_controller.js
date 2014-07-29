@@ -3,11 +3,12 @@
  */
 'use strict'
 angular.module('partyBidApp')
-    .controller('activitySignUpCtrl',function($scope,$location){
+    .controller('activitySignUpCtrl',function($scope,$location,$routeParams){
 
         var current_activity_status = JSON.parse(localStorage['current_activity']).activity_status;
         var start_tag_value = JSON.parse(localStorage['start_tag']);
         var signing_activity_status = JSON.parse(localStorage['signing_activity']).activity_status;
+
 
 
         if (signing_activity_status==1 && current_activity_status==1){

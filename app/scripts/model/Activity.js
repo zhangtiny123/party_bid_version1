@@ -36,10 +36,8 @@ Activity.activity_start = function() {
     var get_activities = JSON.parse(localStorage['activities']);
     console.log('run the get method');
     for (var i=0; i<get_activities.length; i++){
-        console.log('run for loop');
         if (get_activities[i].nameof_activity == get_current_activity.nameof_activity){
             get_activities[i].activity_status = 1;
-            console.log('run this store line');
         }
     }
     localStorage['activities'] = JSON.stringify(get_activities);
@@ -70,6 +68,8 @@ Activity.activity_end = function() {
     }
     localStorage['activities'] = JSON.stringify(get_activities);
 }
+
+
 
 
 Activity.activity_list_for_show = function() {
