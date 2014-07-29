@@ -26,7 +26,7 @@ Person.save = function(json_message){
 
     var isStarted = (JSON.parse(localStorage['start_tag']) == 1);
     console.log('是否开始：'+isStarted);
-    var isRightChar = (start_chars == 'bm' || start_chars == 'BM');
+    var isRightChar = (start_chars=='bm' || start_chars=='BM' || start_chars=='Bm' || start_chars=='bM');
     console.log('正确的开头：'+isRightChar);
     var curr = JSON.parse(localStorage['current_activity']);
 
