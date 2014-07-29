@@ -12,7 +12,11 @@ angular.module('partyBidApp')
         if (conner==0){
             $location.path('/create_activity');
         }
-
+        else {
+            var arr1=JSON.parse(localStorage['activities']);
+            arr1 = arr1.reverse();
+            $scope.activities=arr1;
+        }
 
         $scope.create_activity = function(){
             $location.path('/create_activity');
@@ -28,9 +32,7 @@ angular.module('partyBidApp')
 //            console.log(val1);
         }
 
-        var arr1=JSON.parse(localStorage['activities']);
-        arr1 = arr1.reverse();
-        $scope.activities=arr1;
+
 
 
     });
