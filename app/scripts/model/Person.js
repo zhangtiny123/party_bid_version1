@@ -14,8 +14,7 @@ Person.save = function(json_message){
 
 
     //读出json_message中的数据
-    var start_chars = json_message.messages[0].message.slice(0,2);
-    console.log('首字符'+start_chars);
+
     var person_name = json_message.messages[0].message.slice(2);
     var phone_number = json_message.messages[0].phone;
 
@@ -26,18 +25,15 @@ Person.save = function(json_message){
 
     var isStarted = (JSON.parse(localStorage['start_tag']) == 1);
     console.log('是否开始：'+isStarted);
-    var isRightChar = (start_chars=='bm' || start_chars=='BM' || start_chars=='Bm' || start_chars=='bM');
-    console.log('正确的开头：'+isRightChar);
-    var curr = JSON.parse(localStorage['current_activity']);
+
+    var current_activity = JSON.parse(localStorage['current_activity']);
 
 
-    if (!isStarted && (curr.activity_status == 0)){
+    if (!isStarted && (current_activity.activity_status == 0)){
         native_accessor.send_sms(phone_number,'活动尚未开始，请稍候……');
     }
 
-    else if (!isRightChar){
-        native_accessor.send_sms(phone_number,'短信格式不正确！');
-    }
+
 
     else if (!isStarted && (curr.activity_status == 2)){
         native_accessor.send_sms(phone_number,'活动已经结束');
