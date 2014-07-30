@@ -423,6 +423,8 @@ footer {
 	color: #fff;
 }
 
+
+
 .btn-4:active, .btn-4.active {
 	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #1a86cf), color-stop(0.02, #0066b6), color-stop(1, #004f8f));
 	box-shadow: inset 0px 1px 6px -3px rgba(0,0,0, .5);
@@ -592,7 +594,7 @@ footer {
 	border-top:2px solid #fff;
 	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #fcfcfc), color-stop(1, #ececec));
 	font-size:18px;
-    text-align: center;
+    /*text-align: center;*/
     color: green;
     text-decoration-color: #000000;
     text-shadow: saddlebrown;
@@ -684,7 +686,7 @@ footer {
 	border-top:2px solid #fff;
 	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #fcfcfc), color-stop(1, #ececec));
 	font-size:18px;
-    /*text-align: center;*/
+    text-align: center;
     color: green;
     text-decoration-color: #000000;
     text-shadow: saddlebrown;
