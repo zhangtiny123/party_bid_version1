@@ -12,16 +12,15 @@ angular.module('partyBidApp')
             var arr=[];
             localStorage['activities']=JSON.stringify(arr);
 
-            //作为是否有活动开始标志
-            localStorage['start_tag'] = JSON.stringify(0);
+
         }
 
 
         if (JSON.parse(localStorage['activities']).length==0){
-            $scope.ifnotback=false;
+            $scope.isShowing=false;
         }
         else {
-            $scope.ifnotback=true;
+            $scope.isShowing=true;
         }
 
 
@@ -44,49 +43,22 @@ angular.module('partyBidApp')
                 //保存当前正在进行报名的活动
                 localStorage['signing_activity'] = JSON.stringify([]);
 
+                //保存当前正在竞价的竞价
+                localStorage['biding_bid'] = JSON.stringify([]);
+
                 //作为报名者信息存储用
-                localStorage[$scope.activityName] = JSON.stringify([]);
+                localStorage[$scope.activityName+'-sign_up'] = JSON.stringify([]);
+
+                //作为存储对应活动有哪些竞价
+                localStorage[$scope.activityName+'-bid'] = JSON.stringify([]);
 
                 //作为是否有活动开始标志
-                localStorage['start_tag'] = JSON.stringify(0);
+                localStorage['signing_start_tag'] = JSON.stringify(0);
+
+                //作为是否有竞价开始的标志
+                localStorage['biding_start_tag'] = JSON.stringify(0);
                 $location.path('/activity_sign_up/'+activity_created.nameof_activity);
             }
-
-//            //判断是否与已有活动名重复
-//            var temp = JSON.parse(localStorage['activities']);;
-//            for (var i=0; i<temp.length; i++){
-//                if (temp[i] == $scope.activityName){
-//                    tag = 1;
-//                }
-//            }
-//
-//
-//            if (tag == 0) {
-//                var activity_created = new Activity($scope.activityName,0);
-//
-//                temp.push(activity_created);
-//                localStorage['activities'] = JSON.stringify(temp);
-//
-//                //再单独存一组当前输入的活动名称
-//                localStorage['current_activity'] = JSON.stringify(activity_created);
-//
-//                //保存当前正在进行报名的活动
-//                localStorage['signing_activity'] = JSON.stringify([]);
-//
-//                //作为报名者信息存储用
-//                localStorage[$scope.activityName] = JSON.stringify([]);
-//
-//                //作为是否有活动开始标志
-//                localStorage['start_tag'] = JSON.stringify(0);
-//                $location.path('/activity_sign_up');
-//            }
-//            else{
-//                $scope.alert_message = '活动名称重复';
-//                $scope.activityName = null;
-//                tag = 0;
-//            }
-
-
 
         }
 

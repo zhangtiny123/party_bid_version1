@@ -17,7 +17,7 @@ Activity.activity_create = function(new_activity) {
 
 
 Activity.activity_start = function() {
-    localStorage['start_tag'] = JSON.stringify(1);
+    localStorage['signing_start_tag'] = JSON.stringify(1);
 
 
     //将current_activity的activity_status设置为1,即正在报名
@@ -46,7 +46,7 @@ Activity.activity_start = function() {
 
 
 Activity.activity_end = function() {
-    localStorage['start_tag'] = JSON.stringify(0);
+    localStorage['signing_start_tag'] = JSON.stringify(0);
 
     var get_signing_activity = JSON.parse(localStorage['signing_activity']);
     get_signing_activity.activity_status = 2;

@@ -36,6 +36,14 @@ angular
         templateUrl:'views/activity_list.html',
         controller:'activityListCtrl'
         })
+        .when('/biding_list/:activity_name',{
+          templateUrl:'views/biding_list.html',
+          controller:'bidingListCtrl'
+        })
+        .when('/activity_biding/:biding_name',{
+            templateUrl:'views/activity_biding.html',
+            controller:'activityBidingCtrl'
+        })
       .otherwise({
         redirectTo: '/'
       });

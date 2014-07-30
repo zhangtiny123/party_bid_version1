@@ -19,16 +19,16 @@ var native_accessor = {
 
     process_received_message: function (json_message) {
         var start_chars = json_message.messages[0].message.slice(0,2);
-        console.log('首字符'+start_chars);
+
         var isSignUp = (start_chars=='bm' || start_chars=='BM' || start_chars=='Bm' || start_chars=='bM');
-        console.log('正确的开头：'+isRightChar);
+
         var isBiding = (start_chars=='jj' || start_chars=='JJ' || start_chars=='jJ' || start_chars=='Jj');
         if (isSignUp){
             Person.save(json_message);
         }
 
         else if (isBiding) {
-            
+
         }
         else {
             native_accessor.send_sms(phone_number,'短信格式不正确！');

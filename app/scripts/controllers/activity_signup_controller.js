@@ -6,7 +6,8 @@ angular.module('partyBidApp')
     .controller('activitySignUpCtrl',function($scope,$location,$routeParams){
 
         var current_activity_status = JSON.parse(localStorage['current_activity']).activity_status;
-        var start_tag_value = JSON.parse(localStorage['start_tag']);
+        var current_activity_name = JSON.parse(localStorage['current_activity']).nameof_activity;
+        var signing_start_tag_value = JSON.parse(localStorage['signing_start_tag']);
         var signing_activity_status = JSON.parse(localStorage['signing_activity']).activity_status;
 
 
@@ -20,7 +21,7 @@ angular.module('partyBidApp')
 
 
         $scope.is_button_enable = function() {
-            if ((current_activity_status==1 && start_tag_value==1) || (current_activity_status==0 && start_tag_value==0)) {
+            if ((current_activity_status==1 && signing_start_tag_value==1) || (current_activity_status==0 && signing_start_tag_value==0)) {
                 return false;
             }
             else {
@@ -39,6 +40,7 @@ angular.module('partyBidApp')
                 $scope.button_name = 'start';
                 current_activity_status = 2;
                 Activity.activity_end();
+                $location.path('/biding_list/'+current_activity_name);
             }
             else{
                 $scope.buttonName = 'end';

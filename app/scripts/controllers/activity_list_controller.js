@@ -35,13 +35,23 @@ angular.module('partyBidApp')
             $location.path('/create_activity');
         }
 
-        $scope.to_activitySignUp = function(value1) {
+        $scope.click_event = function(value1) {
+
+
 
             var p_temp = new Activity(value1.nameof_activity,value1.activity_status);
 
-            localStorage['current_activity'] = JSON.stringify(p_temp);
+            if (p_temp.activity_status==0 || p_temp.activity_status==1){
+                localStorage['current_activity'] = JSON.stringify(p_temp);
 
-            $location.path('/activity_sign_up/'+p_temp.nameof_activity);
+                $location.path('/activity_sign_up/'+p_temp.nameof_activity);
+            }
+            else {
+                $location.path('/biding_list/'+p_temp.nameof_activity)
+            }
+
+
+
 //            console.log(val1);
         }
 

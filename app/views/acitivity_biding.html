@@ -1,10 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<div id="biding_wrapper" ng-controller="activityBidingCtrl">
 
-</body>
-</html>
+    <header >
+
+        竞价({{number_of_sign}}人）
+        <div class="header-right" ng-switch="button_name">
+            <button class="btn-style btn-4" ng-click="start_sign_up()" ng-disabled="is_button_enable()" ng-switch-when="start">开始</button>
+            <button class="btn-style btn-4" ng-click="end_sign_up()" ng-disabled="is_button_enable()" ng-switch-when="end">结束</button>
+        </div>
+        <div class="header-left">
+            <button class=" btn-style btn-4" ng-click="back_to_activityList()">返回</button>
+        </div>
+    </header>
+    <div class="wrapper">
+        <ul class="list-style-2">
+            <li  ng-repeat="person in persons">
+                <h3>{{person.name}}</h3>
+                <i>{{person.phone}}</i>
+            </li>
+        </ul>
+    </div>
+
+    <!--<footer>-->
+        <!--<ul class="footer-nav footer-nav-2tabs">-->
+            <!--<li class="active"><a ng-click="click_sign_up()"><i class="icon-group"></i><br />报名</a></li>-->
+            <!--<li><a ng-click="click_biding()"><i class="icon-comments"></i><br />竞价</a></li>-->
+        <!--</ul>-->
+    <!--</footer>-->
+</div>

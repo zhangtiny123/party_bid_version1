@@ -1,34 +1,18 @@
-<!DOCTYPE html>
-<html ng-app>
-<head lang="en">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>party_bid</title>
 
-
-
-
-    <!--<script type="application/javascript" src="js/iscroll-lite.js"></script>-->
-</head>
-<body ng-controller="activityListCtrl">
+<div ng-controller="activityListCtrl">
 <header>
     活动列表
     <div class="header-right">
         <button class="btn-style btn-4" ng-click="create_activity()" ng-disabled="is_create_button_enable()">创建活动</button>
     </div>
 </header>
-    <div id="wrapper" class="wrapper">
+    <div  class="wrapper">
         <ul class="list-style-6">
-            <li class = "clearfix btn-default"  ng-repeat="activity in activities " ng-click="to_activitySignUp(activity)">
+            <li class = "clearfix btn-default"  ng-repeat="activity in activities " ng-click="click_event(activity)">
                 <h3 class="{{ activity.activity_status==1}}">
                     {{activity.nameof_activity}} <i class="icon-angle-right"></i>
                 </h3>
             </li>
-
         </ul>
-
     </div>
-
-
-</body>
-</html>
+</div>

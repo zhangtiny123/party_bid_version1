@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
 
-</body>
-</html>
+<div ng-controller="bidingListCtrl">
+    <header>
+        竞价列表
+        <div class="header-left">
+            <button class="btn-style btn-4" ng-click="back_to_activity_list()" >返回</button>
+        </div>
+
+        <div class="header-right">
+            <button class="btn-style btn-4" ng-click="start_bid()" ng-disabled="is_start_button_enable()">开始</button>
+        </div>
+    </header>
+    <div id= class="wrapper">
+        <ul class="list-style-6">
+            <li class = "clearfix btn-default"  ng-repeat="biding in bidings " ng-click="to_biding_page(biding)">
+                <h3 class="{{ biding.biding_status==1}}">
+                    {{biding.biding_name}} <i class="icon-angle-right"></i>
+                </h3>
+            </li>
+        </ul>
+    </div>
+</div>
