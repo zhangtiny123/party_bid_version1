@@ -2,13 +2,13 @@
 
     <header >
 
-        竞价({{number_of_sign}}人）
-        <div class="header-right" ng-switch="button_name">
-            <button class="btn-style btn-4" ng-click="start_sign_up()" ng-disabled="is_button_enable()" ng-switch-when="start">开始</button>
-            <button class="btn-style btn-4" ng-click="end_sign_up()" ng-disabled="is_button_enable()" ng-switch-when="end">结束</button>
+        竞价({{number_of_bid}}人）
+        <div class="header-right" >
+
+            <button class="btn-style btn-4" ng-click="stop_biding()" ng-disabled="is_end_enable()" >结束</button>
         </div>
         <div class="header-left">
-            <button class=" btn-style btn-4" ng-click="back_to_activityList()">返回</button>
+            <button class=" btn-style btn-4" ng-click="back_to_bid_list()">返回</button>
         </div>
     </header>
     <div class="wrapper">
