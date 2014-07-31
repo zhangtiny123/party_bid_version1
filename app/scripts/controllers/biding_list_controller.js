@@ -6,9 +6,13 @@ angular.module('partyBidApp')
     .controller('bidingListCtrl',function($scope,$location,$routeParams){
 
         var passed_activity_name = $routeParams.activity_name;
-//        console.log(passed_activity_name);
-//        console.log('hehe');
-//        $scope.bidings = JSON.parse(localStorage['']);
+
+        $scope.bidings = JSON.parse(localStorage[passed_activity_name+'-bid']).reverse();
+
+        $scope.click_event = function(biding)  {
+            $location.path('/activity_biding/'+biding.biding_name);
+        }
+
 
         $scope.back_to_activity_list = function() {
             $location.path('/activity_list');

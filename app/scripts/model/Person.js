@@ -11,31 +11,20 @@ function Person (name,phone_num,price){
 
 
 
-Person.save = function(json_message){
-    console.log('runned save function');
-
-
+Person.sign_ups_save = function(json_message){
     //读出json_message中的数据
-
     var person_name = json_message.messages[0].message.slice(2);
     var phone_number = json_message.messages[0].phone;
 
-
     //组成数组元素person_item
     var person_item = {'name':person_name,'phone':phone_number};
-
-
     var isStarted = (JSON.parse(localStorage['signing_start_tag']) == 1);
-    console.log('是否开始：'+isStarted);
-
     var current_activity = JSON.parse(localStorage['current_activity']);
-    console.log('当前活动：'+current_activity);
+
 
     if (!isStarted && (current_activity.activity_status == 0)){
         native_accessor.send_sms(phone_number,'活动尚未开始，请稍候……');
     }
-
-
 
     else if (!isStarted && (curr.activity_status == 2)){
         native_accessor.send_sms(phone_number,'活动已经结束');
@@ -43,7 +32,6 @@ Person.save = function(json_message){
 
     else {
         var isNotRepeated = !Person.isRepeated(json_message);
-        console.log('不重复:'+isNotRepeated);
 
         if(isNotRepeated){
             var stored = JSON.parse(localStorage['signing_activity']).nameof_activity;
@@ -60,8 +48,10 @@ Person.save = function(json_message){
         else {
             native_accessor.send_sms(phone_number,'你已经报名成功，请勿重复报名');
         }
-
     }
+}
+
+Person.biding_save = function(json_message) {
 
 }
 

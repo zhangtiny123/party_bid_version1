@@ -12,6 +12,7 @@ angular.module('partyBidApp')
 
 
 
+
         if (signing_activity_status==1 && current_activity_status==1){
             $scope.button_name = 'end';
         }

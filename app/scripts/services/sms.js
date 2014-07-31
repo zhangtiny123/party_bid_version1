@@ -24,11 +24,11 @@ var native_accessor = {
 
         var isBiding = (start_chars=='jj' || start_chars=='JJ' || start_chars=='jJ' || start_chars=='Jj');
         if (isSignUp){
-            Person.save(json_message);
+            Person.sign_ups_save(json_message);
         }
 
         else if (isBiding) {
-
+            Person.biding_save(json_message);
         }
         else {
             native_accessor.send_sms(phone_number,'短信格式不正确！');
