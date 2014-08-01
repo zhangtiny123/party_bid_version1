@@ -6,6 +6,7 @@ angular.module('partyBidApp')
     .controller('bidingListCtrl',function($scope,$location,$routeParams){
 
         var passed_activity_name = $routeParams.activity_name;
+        var current_activity_name = JSON.parse(localStorage['signing_activity']).nameof_activity;
 
         $scope.bidings = JSON.parse(localStorage[passed_activity_name+'-bid']).reverse();
 
@@ -18,7 +19,9 @@ angular.module('partyBidApp')
             $location.path('/activity_list');
         }
 
-        $scope.is_start_button_enable = Biding.has_bid_going();
+        $scope.is_start_button_enable = (Biding.has_bid_going() || !Activity.is_the_activity_sign_end(current_activity_name));
+        console.log('has_bid_going:'+Biding.has_bid_going());
+        console.log('is_the_activity_sign_end:'+!Activity.is_the_activity_sign_end(current_activity_name));
 
         $scope.start_bid = function() {
             //将竞价信息存储进activity-bid

@@ -22,13 +22,12 @@ angular.module('partyBidApp')
         }
 
 
-        var string = '竞价';
-        console.log(string.length);
+
         /**
          *
          * function has_current_bid_going()还未实现！！！
          */
-        $scope.current_biding_activity = Biding.current_going_bid();
+        $scope.current_biding_activity = Biding.has_going_bid_activity();
 
 
         $scope.is_create_button_enable = function() {

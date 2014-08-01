@@ -28,18 +28,27 @@ Biding.has_bid_going = function() {
     }
 }
 
-Biding.current_going_bid = function() {
+Biding.has_going_bid_activity = function() {
 
     var current_biding = JSON.parse(localStorage['biding_bid']);
-    var length_of_biding_name = current_biding.biding_name.length;
-    var current_biding_activity_name = current_biding.biding_name.slice(0,length_of_biding_name-3);
+    console.log('current_biding:'+(current_biding == null));
+    if (current_biding.length != 0){
+        console.log('run the if statement?')
+        var length_of_biding_name = current_biding.biding_name.length;
+        var current_biding_activity_name = current_biding.biding_name.slice(0,length_of_biding_name-3);
 
-    if(current_biding.biding_status == 1){
-        return current_biding_activity_name;
+        if(current_biding.biding_status == 1){
+            return current_biding_activity_name;
+        }
+        else{
+            return null;
+        }
     }
     else{
         return null;
     }
+
+
 
 }
 

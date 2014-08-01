@@ -15,6 +15,23 @@ Activity.activity_create = function(new_activity) {
 }
 
 
+Activity.get_current_activity = function() {
+    var current_activity = JSON.parse(localStorage['current_activity']);
+
+    return current_activity;
+}
+
+Activity.is_the_activity_sign_end = function(activity_name) {
+    var the_activities = JSON.parse(localStorage['activities']);
+
+    for (var i=0; i<the_activities.length; i++) {
+        if (the_activities[i].nameof_activity==activity_name && the_activities[i].activity_status==2) {
+            return true;
+        }
+    }
+    return false;
+}
+
 
 Activity.activity_start = function() {
     localStorage['signing_start_tag'] = JSON.stringify(1);

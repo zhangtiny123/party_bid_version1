@@ -23,9 +23,8 @@ angular.module('partyBidApp')
 
 
         $scope.is_button_enable = function() {
-            if ((current_activity_status==1 && signing_start_tag_value==1) || (current_activity_status==0 && signing_start_tag_value==0
-                && !Biding.has_bid_going())
-                ) {
+            if ((current_activity_status==1 && signing_start_tag_value==1) || (current_activity_status!=1 && signing_start_tag_value==0
+                && !Biding.has_bid_going())) {
                 return false;
             }
             else {
@@ -41,7 +40,7 @@ angular.module('partyBidApp')
         $scope.end_sign_up = function() {
             var con = confirm('确定要结束此次报名吗？');
             if (con == true){
-//                $scope.button_name = 'start';
+                $scope.button_name = 'start';
                 current_activity_status = 2;
                 Activity.activity_end();
                 $location.path('/biding_list/'+current_activity_name);
@@ -60,7 +59,7 @@ angular.module('partyBidApp')
         }
 
         $scope.click_sign_up = function(){
-            $location.path('/activity_sign_up');
+
         }
 
         $scope.click_biding = function(){
