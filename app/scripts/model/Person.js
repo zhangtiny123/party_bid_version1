@@ -76,9 +76,9 @@ Person.isRepeated = function(json_message) {
 
 
 
-Person.read_person_item = function() {
-    var read_temp = JSON.parse(localStorage['current_activity']).nameof_activity;
-    var read_temp1 = JSON.parse(localStorage[read_temp+'-sign_up']);
+Person.read_person_item = function(current_activity_name) {
+
+    var read_temp1 = JSON.parse(localStorage[current_activity_name+'-sign_up']);
 
     return read_temp1;
 }

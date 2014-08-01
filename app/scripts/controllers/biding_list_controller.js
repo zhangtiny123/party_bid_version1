@@ -18,9 +18,7 @@ angular.module('partyBidApp')
             $location.path('/activity_list');
         }
 
-        $scope.to_biding_page = function() {
-            $location.path('/activity_biding');
-        }
+        $scope.is_start_button_enable = Biding.has_bid_going();
 
         $scope.start_bid = function() {
             //将竞价信息存储进activity-bid
@@ -29,7 +27,7 @@ angular.module('partyBidApp')
             //将竞价开始标志修改
 
             var biding_list = JSON.parse(localStorage[passed_activity_name+'-bid']);
-            var new_biding = new Biding('竞价'+(biding_list.length+1),0);
+            var new_biding = new Biding(passed_activity_name+'竞价'+(biding_list.length+1),1);
             biding_list.push(new_biding);
             localStorage[passed_activity_name+'-bid'] = JSON.stringify(biding_list);
 
@@ -44,6 +42,12 @@ angular.module('partyBidApp')
             localStorage['biding_start_tag'] = JSON.stringify(bid_start_tag);
 
 
+
+
             $location.path('/activity_biding/'+new_biding.biding_name);
+        }
+
+        $scope.click_sign_up = function() {
+            $location.path('/activity_sign_up/'+passed_activity_name);
         }
     });

@@ -10,7 +10,7 @@ angular.module('partyBidApp')
 
         var conner = localStorage.length;
         if (conner==0){
-            console.log('run this line?')
+
             $location.path('/create_activity');
         }
         else {
@@ -21,8 +21,18 @@ angular.module('partyBidApp')
             var signing_activity_status = JSON.parse(localStorage['signing_activity']).activity_status;
         }
 
+
+        var string = '竞价';
+        console.log(string.length);
+        /**
+         *
+         * function has_current_bid_going()还未实现！！！
+         */
+        $scope.current_biding_activity = Biding.current_going_bid();
+
+
         $scope.is_create_button_enable = function() {
-            if (signing_activity_status == 1){
+            if (signing_activity_status == 1 || Biding.has_bid_going()){
                 return true;
             }
             else {
@@ -44,15 +54,15 @@ angular.module('partyBidApp')
             if (p_temp.activity_status==0 || p_temp.activity_status==1){
                 localStorage['current_activity'] = JSON.stringify(p_temp);
 
+
                 $location.path('/activity_sign_up/'+p_temp.nameof_activity);
             }
             else {
+                localStorage['current_activity'] = JSON.stringify(p_temp);
                 $location.path('/biding_list/'+p_temp.nameof_activity)
             }
 
 
-
-//            console.log(val1);
         }
 
 
