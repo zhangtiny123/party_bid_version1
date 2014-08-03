@@ -18,22 +18,18 @@ Biding.biding_create = function(new_biding,biding_list_name) {
 
 
 Biding.has_bid_going = function() {
+
     var bid_start_tag = JSON.parse(localStorage['biding_start_tag']);
 
-    if (bid_start_tag == 1){
-        return true;
-    }
-    else{
-        return false;
-    }
+    return bid_start_tag == 1;
 }
 
 Biding.has_going_bid_activity = function() {
 
+
     var current_biding = JSON.parse(localStorage['biding_bid']);
-    console.log('current_biding:'+(current_biding == null));
     if (current_biding.length != 0){
-        console.log('run the if statement?')
+
         var length_of_biding_name = current_biding.biding_name.length;
         var current_biding_activity_name = current_biding.biding_name.slice(0,length_of_biding_name-3);
 
@@ -53,6 +49,7 @@ Biding.has_going_bid_activity = function() {
 }
 
 Biding.end_bid = function(biding_name) {
+
     var current_activity = JSON.parse(localStorage['current_activity']);
     var current_bid_list = JSON.parse(localStorage[current_activity.nameof_activity+'-bid']);
     var biding_bid = JSON.parse(localStorage['biding_bid']);
@@ -60,7 +57,7 @@ Biding.end_bid = function(biding_name) {
 
     for (var i=0; i<current_bid_list.length; i++) {
         if (current_bid_list[i].biding_name == biding_name){
-            current_bid_list[i].biding_status = 0;
+            current_bid_list[i].biding_status = 2;
         }
     }
     localStorage[current_activity.nameof_activity+'-bid'] = JSON.stringify(current_bid_list);

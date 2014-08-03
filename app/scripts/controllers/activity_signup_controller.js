@@ -5,11 +5,14 @@
 angular.module('partyBidApp')
     .controller('activitySignUpCtrl',function($scope,$location,$routeParams){
 
-        var current_activity_status = JSON.parse(localStorage['current_activity']).activity_status;
+
         var current_activity_name = $routeParams.activity_name;
+        var current_activity_status = Activity.find_activity_status_byName(current_activity_name);
 
         var signing_start_tag_value = JSON.parse(localStorage['signing_start_tag']);
+
         var signing_activity_status = JSON.parse(localStorage['signing_activity']).activity_status;
+
 
 
 
@@ -49,6 +52,8 @@ angular.module('partyBidApp')
                 $scope.buttonName = 'end';
             }
         }
+
+
 
         $scope.number_of_sign = Person.read_person_item(current_activity_name).length;
 

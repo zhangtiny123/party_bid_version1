@@ -20,8 +20,7 @@ angular.module('partyBidApp')
         }
 
         $scope.is_start_button_enable = (Biding.has_bid_going() || !Activity.is_the_activity_sign_end(current_activity_name));
-        console.log('has_bid_going:'+Biding.has_bid_going());
-        console.log('is_the_activity_sign_end:'+!Activity.is_the_activity_sign_end(current_activity_name));
+
 
         $scope.start_bid = function() {
             //将竞价信息存储进activity-bid

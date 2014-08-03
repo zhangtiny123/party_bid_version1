@@ -19,15 +19,19 @@ var native_accessor = {
 
     process_received_message: function (json_message) {
         var start_chars = json_message.messages[0].message.slice(0,2);
+        var phone_number = json_message.messages[0].phone ;
 
         var isSignUp = (start_chars=='bm' || start_chars=='BM' || start_chars=='Bm' || start_chars=='bM');
 
+
         var isBiding = (start_chars=='jj' || start_chars=='JJ' || start_chars=='jJ' || start_chars=='Jj');
+
         if (isSignUp){
             Person.sign_ups_save(json_message);
         }
 
         else if (isBiding) {
+
             Person.biding_save(json_message);
         }
         else {

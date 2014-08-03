@@ -8,7 +8,10 @@ angular.module('partyBidApp')
         var bid_name = $routeParams.biding_name;
         var current_activity_name = JSON.parse(localStorage['current_activity']).nameof_activity;
 
+
+
         $scope.number_of_bid = JSON.parse(localStorage[bid_name]).length;
+        $scope.number = 1;
         $scope.persons = JSON.parse(localStorage[bid_name]);
 
         $scope.back_to_bid_list = function() {

@@ -45,13 +45,11 @@ Activity.activity_start = function() {
 
     //将正在报名的活动设置为当前活动
     var transform_temp = JSON.parse(localStorage['current_activity']);
-    console.log('run this trans line');
     localStorage['signing_activity'] = JSON.stringify(transform_temp);
 
 
     //将activities中的当前报名中的活动状态设置为1,即正在报名
     var get_activities = JSON.parse(localStorage['activities']);
-    console.log('run the get method');
     for (var i=0; i<get_activities.length; i++){
         if (get_activities[i].nameof_activity == get_current_activity.nameof_activity){
             get_activities[i].activity_status = 1;
@@ -96,6 +94,16 @@ Activity.activity_list_for_show = function() {
     return get_all_activities;
 }
 
+Activity.find_activity_status_byName = function(activity_name) {
+    var activities = JSON.parse(localStorage['activities']);
+
+    for (var i=0; i<activities.length; i++){
+        if (activities[i].nameof_activity == activity_name){
+            return activities[i].activity_status;
+        }
+    }
+    return null;
+}
 
 
 Activity.isRepeated = function(new_activity) {
@@ -106,4 +114,10 @@ Activity.isRepeated = function(new_activity) {
         }
     }
     return false;
+}
+
+Activity.has_activity_signing = function() {
+    var flag = JSON.parse(localStorage['signing_start_tag'])
+
+    return flag == 1;
 }
