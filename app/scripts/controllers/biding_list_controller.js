@@ -6,12 +6,12 @@ angular.module('partyBidApp')
     .controller('bidingListCtrl',function($scope,$location,$routeParams){
 
         var passed_activity_name = $routeParams.activity_name;
-        var current_activity_name = JSON.parse(localStorage['signing_activity']).nameof_activity;
+        var current_activity_name = Activity.get_current_activity().name;
 
-        $scope.bidings = JSON.parse(localStorage[passed_activity_name+'-bid']).reverse();
+        $scope.bidings = Biding.get_biding_list(passed_activity_name,'-bid');
 
         $scope.click_event = function(biding)  {
-            $location.path('/activity_biding/'+biding.biding_name);
+            $location.path('/activity_biding/'+biding.name);
         }
 
 
@@ -19,34 +19,29 @@ angular.module('partyBidApp')
             $location.path('/activity_list');
         }
 
-        $scope.is_start_button_enable = (Biding.has_bid_going() || !Activity.is_the_activity_sign_end(current_activity_name));
-
+        $scope.is_start_button_enable = (Biding.has_bid_going() || Activity.find_activity_sign_status_by_name(current_activity_name)!=2);
 
         $scope.start_bid = function() {
-            //将竞价信息存储进activity-bid
-            //创建对应的竞价报价列表存储参与竞价的人的信息
-            //判断参与竞价的是否已经报名活动
-            //将竞价开始标志修改
+            var biding_list = Biding.get_biding_list(passed_activity_name,'-bid');
 
-            var biding_list = JSON.parse(localStorage[passed_activity_name+'-bid']);
-            var new_biding = new Biding(passed_activity_name+'竞价'+(biding_list.length+1),1);
-            biding_list.push(new_biding);
-            localStorage[passed_activity_name+'-bid'] = JSON.stringify(biding_list);
+            var new_biding = new Biding(passed_activity_name+'-竞价'+(biding_list.length+1),1);
+            new_biding.save_new_biding(passed_activity_name);
 
+            Activity.set_activity_bid_status_by_name(passed_activity_name,1);
 
+            var the_current_activity = Activity.get_current_activity()
+            the_current_activity.bid_status = 1;
+            Activity.set_current_activity(the_current_activity);
 
-            localStorage[new_biding.biding_name] = JSON.stringify([]);
-            localStorage['biding_bid'] = JSON.stringify(new_biding);
+            localStorage[new_biding.name] = JSON.stringify([]);
+            Biding.set_biding_bid(new_biding);
 
-
-            var bid_start_tag = JSON.parse(localStorage['biding_start_tag']);
-            bid_start_tag = 1;
-            localStorage['biding_start_tag'] = JSON.stringify(bid_start_tag);
+            Biding.set_bid_start_tag(1);
 
 
 
 
-            $location.path('/activity_biding/'+new_biding.biding_name);
+            $location.path('/activity_biding/'+new_biding.name);
         }
 
         $scope.click_sign_up = function() {

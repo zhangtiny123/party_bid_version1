@@ -13,8 +13,8 @@
     <div class="wrapper">
         <ul class="list-style-6">
             <li class = "clearfix btn-default"  ng-repeat="biding in bidings " ng-click="click_event(biding)">
-                <h3 class="{{ biding.biding_status==1}}">
-                    {{biding.biding_name}} <i class="icon-angle-right"></i>
+                <h3 class="{{ biding.status==1}}">
+                    {{biding.name}} <i class="icon-angle-right"></i>
                 </h3>
             </li>
         </ul>

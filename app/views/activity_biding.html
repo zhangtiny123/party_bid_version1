@@ -13,17 +13,15 @@
     </header>
     <div class="wrapper">
         <ul class="list-style-2">
-            <li  ng-repeat="person in persons" >
-                <h3>{{number++}}{{person.name}}</h3>
+            <li  ng-repeat="person in persons " >
+                <i></i>
+                <h3>{{$index + 1}}.&nbsp;&nbsp;&nbsp;{{person.name}}</h3>
                 <i>{{person.phone}}</i>
             </li>
         </ul>
     </div>
 
     <!--<footer>-->
-        <!--<ul class="footer-nav footer-nav-2tabs">-->
-            <!--<li class="active"><a ng-click="click_sign_up()"><i class="icon-group"></i><br />报名</a></li>-->
-            <!--<li><a ng-click="click_biding()"><i class="icon-comments"></i><br />竞价</a></li>-->
-        <!--</ul>-->
+
     <!--</footer>-->
 </div>

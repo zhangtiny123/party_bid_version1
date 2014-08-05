@@ -6,9 +6,7 @@ angular.module('partyBidApp')
     .controller('activityBidingCtrl',function($scope,$location,$routeParams){
 
         var bid_name = $routeParams.biding_name;
-        var current_activity_name = JSON.parse(localStorage['current_activity']).nameof_activity;
-
-
+        var current_activity_name = Activity.get_current_activity().name;
 
         $scope.number_of_bid = JSON.parse(localStorage[bid_name]).length;
         $scope.number = 1;
@@ -21,22 +19,17 @@ angular.module('partyBidApp')
         $scope.stop_biding = function() {
             var con = confirm('确定要结束此次竞价吗？');
             if (con == true){
-                var bidding_start_tag = JSON.parse(localStorage['biding_start_tag']);
-                bidding_start_tag = 0;
-                localStorage['biding_start_tag'] = JSON.stringify(bidding_start_tag);
-
                 Biding.end_bid(bid_name);
+                Activity.set_activity_bid_status_by_name(current_activity_name,2)
             }
 
         }
 
         $scope.is_end_enable = function() {
-            var current_activity_name = Activity.get_current_activity().nameof_activity;
-
-            var current_bid_list = JSON.parse(localStorage[current_activity_name+'-bid']);
+            var current_bid_list = Biding.get_biding_list(current_activity_name,'-bid');
 
             for (var i=0; i<current_bid_list.length; i++){
-                if (current_bid_list[i].biding_name==bid_name && current_bid_list[i].biding_status==0){
+                if (current_bid_list[i].name==bid_name && (current_bid_list[i].status==0 || current_bid_list[i].status==2)){
                     return true;
                 }
             }

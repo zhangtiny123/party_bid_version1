@@ -592,7 +592,7 @@ footer {
 	padding:0 10px;
 	border-bottom:2px solid #ccc;
 	border-top:2px solid #fff;
-	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #fcfcfc), color-stop(1, #ececec));
+	/*background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #fcfcfc), color-stop(1, #ececec));*/
 	font-size:18px;
     /*text-align: center;*/
     color: green;

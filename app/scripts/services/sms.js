@@ -26,6 +26,7 @@ var native_accessor = {
 
         var isBiding = (start_chars=='jj' || start_chars=='JJ' || start_chars=='jJ' || start_chars=='Jj');
 
+        console.log('判断过了短信开头')
         if (isSignUp){
             Person.sign_ups_save(json_message);
         }
