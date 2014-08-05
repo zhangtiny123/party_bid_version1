@@ -23,16 +23,6 @@ Activity.set_current_activity = function(current_value) {
     localStorage['current_activity'] = JSON.stringify(current_value);
 }
 
-//Activity.get_signing_activity = function() {
-//    var current_activity = JSON.parse(localStorage['signing_activity']);
-//    return current_activity;
-//}
-//
-//Activity.set_signing_activity = function(activity) {
-//
-//    localStorage['signing_activity'] = JSON.stringify(activity);
-//}
-
 Activity.find_activity_sign_status_by_name = function(activity_name) {
     var activities = JSON.parse(localStorage['activities']);
 
@@ -97,6 +87,12 @@ Activity.set_signing_start_tag = function(tag_value) {
     var flag = Activity.get_signing_start_tag();
     flag = tag_value;
     localStorage['signing_start_tag'] = JSON.stringify(flag);
+}
+
+Activity.set_activity_signed_list = function(current_activity_name, person_item) {
+    var result = Person.read_person_signed_list(current_activity_name)
+    result.push(person_item);
+    localStorage[current_activity_name+'-sign_up'] = JSON.stringify(result);
 }
 
 Activity.activity_sign_start = function() {

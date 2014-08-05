@@ -60,6 +60,12 @@ Biding.set_biding_bid_status = function(status_value) {
     localStorage['biding_bid'] = JSON.stringify(biding_bid);
 }
 
+Biding.set_bid_person_list = function(bid_name, bid_person_item) {
+    var bid_list = JSON.parse(localStorage[bid_name]);
+    bid_list.push(bid_person_item);
+    localStorage[bid_name] = JSON.stringify(bid_list);
+}
+
 Biding.find_status_by_name = function(biding_name) {
     var current_activity = Activity.get_current_activity();
     var current_activity_bid_list = Biding.get_biding_list(current_activity.name, '-bid');

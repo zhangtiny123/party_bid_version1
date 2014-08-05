@@ -12,35 +12,22 @@ function Person (name,phone_num,price){
 
 
 Person.sign_ups_save = function(json_message){
-    //读出json_message中的数据
     var person_name = json_message.messages[0].message.slice(2);
     var phone_number = json_message.messages[0].phone;
-
-    //组成数组元素person_item
     var person_item = {'name':person_name,'phone':phone_number};
-    var isStarted = (JSON.parse(localStorage['signing_start_tag']) == 1);
-    var current_activity = JSON.parse(localStorage['current_activity']);
+
+    var isStarted = (Activity.get_signing_start_tag() == 1);
+    var current_activity = Activity.get_current_activity();
 
     if (!isStarted && (current_activity.sign_status == 0)){
         native_accessor.send_sms(phone_number,'活动尚未开始，请稍候……');
     }
-
     else if (!isStarted && (current_activity.sign_status == 2)){
         native_accessor.send_sms(phone_number,'活动报名已经结束');
     }
-
     else {
-        var isNotRepeated = !Person.is_person_repeated(json_message);
-
-        if(isNotRepeated){
-            var stored = Activity.get_current_activity().name;
-            var result = JSON.parse(localStorage[stored+'-sign_up']);
-
-
-            result.push(person_item);
-            localStorage[stored+'-sign_up'] = JSON.stringify(result);
-
-
+        if(!Person.is_person_repeated(json_message)){
+            Activity.set_activity_signed_list(current_activity.name,person_item);
             Person.signed_person_list_pageRefresh();
             native_accessor.send_sms(phone_number,'恭喜！报名成功');
         }
@@ -51,48 +38,30 @@ Person.sign_ups_save = function(json_message){
 }
 
 Person.biding_save = function(json_message) {
-
     var bid_price = json_message.messages[0].message.slice(2);
     var phone_number = json_message.messages[0].phone;
 
     var is_signed = Person.is_signed_up(json_message);
-
     var is_bid_started = Biding.has_bid_going();
-    var biding_bid = JSON.parse(localStorage['biding_bid']);
+    var biding_bid = Biding.get_biding_bid();
 
-
-    if (!is_bid_started && (biding_bid.length==0 || biding_bid.status==0)){
+    if (!is_bid_started && (biding_bid.length==0 || biding_bid.status==2)){
         native_accessor.send_sms(phone_number,'竞价尚未开始，请稍候……');
     }
     else if(!is_signed) {
         native_accessor.send_sms(phone_number,' 您未报名该活动');
     }
-
     else {
-
-        var is_repeated = Person.is_person_repeated(json_message);
-
-        if (is_repeated){
+        if (Person.is_person_repeated(json_message)){
             native_accessor.send_sms(phone_number,'您已经竞价成功，请勿重复竞价！');
         }
-
-        else if (!is_bid_started && biding_bid.status==2){
-            native_accessor.send_sms(phone_number,'本次竞价已经结束');
-        }
         else {
-
             var bid_person_name = Person.get_signed_name(json_message);
-
             var bid_list_item = {'name':bid_person_name,'phone':phone_number,'price':bid_price};
-            var bid_list = JSON.parse(localStorage[biding_bid.name]);
-            bid_list.push(bid_list_item);
-            localStorage[biding_bid.name] = JSON.stringify(bid_list);
-
+            Biding.set_bid_person_list(biding_bid.name, bid_list_item);
             Person.biding_person_list_pageRefresh();
-
             native_accessor.send_sms(phone_number,'恭喜！您已出价成功！');
         }
-
     }
 }
 
@@ -120,26 +89,6 @@ Person.is_signed_up = function(json_message) {
     }
     return false;
 }
-
-//Person.isRepeated = function(json_message,stored_name,find_tail) {
-//    if (stored_name == 'signing_activity'){
-//        var r_temp = JSON.parse(localStorage[stored_name]).name;
-//        var item_temp = JSON.parse(localStorage[r_temp+find_tail]);
-//    }
-//    else{
-//        var r_temp = JSON.parse(localStorage[stored_name]).name;
-//        var item_temp = JSON.parse(localStorage[r_temp]);
-//    }
-//
-//    var phone_number = json_message.messages[0].phone;
-//
-//    for (var i=0; i < item_temp.length; i++){
-//        if ( item_temp[i].phone == phone_number){
-//            return true;
-//        }
-//    }
-//    return false;
-//}
 
 Person.is_person_repeated = function(json_message) {
     var current_activity = Activity.get_current_activity();
