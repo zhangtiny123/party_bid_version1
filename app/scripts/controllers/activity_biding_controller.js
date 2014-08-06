@@ -4,25 +4,24 @@
 'use strict'
 angular.module('partyBidApp')
     .controller('activityBidingCtrl',function($scope,$location,$routeParams){
-
-
         var bid_name = $routeParams.biding_name;
         var current_activity_name = Activity.get_current_activity().name;
 
-        $scope.number_of_bid = JSON.parse(localStorage[bid_name]).length;
+        $scope.bid_name = bid_name.slice(-3);
+        $scope.number_of_bid = Biding.get_bid_person_list(bid_name).length;
         $scope.number = 1;
-        $scope.persons = JSON.parse(localStorage[bid_name]);
+        $scope.persons = Biding.get_bid_person_list(bid_name);
 
         $scope.back_to_bid_list = function() {
             $location.path('/biding_list/'+current_activity_name);
         }
 
         $scope.stop_biding = function() {
-            var con = confirm('确定要结束此次竞价吗？');
-            if (con == true){
+            if (confirm('确定要结束此次竞价吗？')){
                 Biding.end_bid(bid_name);
                 Activity.set_activity_bid_status_by_name(current_activity_name,2)
             }
+            $location.path('/price_result/'+bid_name)
         }
 
         $scope.is_end_enable = function() {

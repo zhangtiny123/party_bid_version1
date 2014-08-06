@@ -1,11 +1,11 @@
-<div id="biding_wrapper" ng-controller="activityBidingCtrl">
+<div id="biding_result_wrapper" ng-controller="priceResultCtrl">
 
     <header >
 
         {{bid_name}}({{number_of_bid}}人）
         <div class="header-right" >
 
-            <button class="btn btn-primary" ng-click="stop_biding()" ng-disabled="is_end_enable()" >结束</button>
+            <button class="btn btn-primary" ng-click="count_data_button()" ng-disabled="is_button_enable()" >统计</button>
         </div>
         <div class="header-left">
             <button class="btn btn-primary" ng-click="back_to_bid_list()">返回</button>

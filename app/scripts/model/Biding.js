@@ -59,6 +59,10 @@ Biding.get_biding_bid = function() {
     return JSON.parse(localStorage['biding_bid']);
 }
 
+Biding.get_bid_person_list = function(bid_name) {
+    return JSON.parse(localStorage[bid_name]);
+}
+
 Biding.set_biding_bid = function(biding_object){
     localStorage['biding_bid'] = JSON.stringify(biding_object);
 }
@@ -120,14 +124,11 @@ Biding.has_going_bid_activity = function() {
 
 Biding.end_bid = function(biding_name) {
     var current_activity = Activity.get_current_activity();
+
     Biding.set_bid_start_tag(0);
-
-
     Biding.set_status_by_name(biding_name, 2);
-
+    Biding.set_biding_bid_status(2);
 
     current_activity.bid_status = 2;
     Activity.set_current_activity(current_activity);
-
-    Biding.set_biding_bid_status(2);
 }

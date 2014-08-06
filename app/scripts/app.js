@@ -44,6 +44,14 @@ angular
             templateUrl:'views/activity_biding.html',
             controller:'activityBidingCtrl'
         })
+        .when('/price_statistics/:biding_name',{
+            templateUrl:'views/price_statistics.html',
+            controller:'priceStatisticCtrl'
+        })
+        .when('/price_result/:biding_name',{
+            templateUrl:'views/price_result.html',
+            controller:'priceResultCtrl'
+        })
       .otherwise({
         redirectTo: '/'
       });

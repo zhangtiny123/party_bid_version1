@@ -7,7 +7,7 @@
             <header>
                 创建活动
                 <div class="header-left">
-                    <a href="" class="btn-style btn-4" ng-show="isShowing" ng-click="back_to_list()">返回</a>
+                    <a href="" class="btn-style btn-4" ng-show="is_showing" ng-click="back_to_list()">返回</a>
                 </div>
 
             </header>
@@ -20,7 +20,7 @@
                     <br>
                     <div>
                         <h5>活动名称</h5>
-                        <textarea   cols="30" rows="1" class="input-full" ng-model="activityName" placeholder="enter activity name"></textarea>
+                        <textarea   cols="30" rows="1" class="input-full" ng-model="activity_name" placeholder="enter activity name"></textarea>
                     </div>
                     <br>
                     <br>
@@ -29,7 +29,7 @@
                     </p>
                     <br>
                     <div>
-                    <button  class="btn btn-2" ng-click="add_new_activity()" ng-disabled="!activityName">创建</button>
+                    <button  class="btn btn-2" ng-click="add_new_activity()" ng-disabled="!activity_name">创建</button>
                     </div>
                 </fieldset>
 

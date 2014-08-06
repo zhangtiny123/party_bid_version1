@@ -9,8 +9,6 @@ function Person (name,phone_num,price){
 
 }
 
-
-
 Person.sign_ups_save = function(json_message){
     var person_name = json_message.messages[0].message.slice(2);
     var phone_number = json_message.messages[0].phone;
@@ -112,7 +110,6 @@ Person.is_person_repeated = function(json_message) {
 
 
 Person.read_person_signed_list = function(current_activity_name) {
-
     var read_temp1 = JSON.parse(localStorage[current_activity_name+'-sign_up']);
 
     return read_temp1;

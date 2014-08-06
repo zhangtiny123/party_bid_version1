@@ -24,6 +24,18 @@ Activity.set_current_activity = function(current_value) {
     localStorage['current_activity'] = JSON.stringify(current_value);
 }
 
+Activity.set_current_activity_bid_status = function(status_value) {
+    var current_activity = Activity.get_current_activity();
+    current_activity.bid_status = status_value;
+    Activity.set_current_activity(current_activity);
+}
+
+Activity.set_current_activity_sign_status = function(status_value) {
+    var current_activity = Activity.get_current_activity();
+    current_activity.sign_status = status_value;
+    Activity.set_current_activity(current_activity);
+}
+
 Activity.find_activity_sign_status_by_name = function(activity_name) {
     var activities = JSON.parse(localStorage['activities']);
 
