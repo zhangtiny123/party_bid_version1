@@ -1,6 +1,6 @@
 //notify_message_received({"messages":[{"create_date":"Tue Jan 15 15:28:44 格林尼治标准时间+0800 2013","message":"bm仝键","phone":"18733171780"}]})
 //notify_message_received({"messages":[{"create_date":"Tue Jan 15 15:28:44 格林尼治标准时间+0800 2013","message":"jj308","phone":"18733171780"}]})
-
+console.log('run the sms.js page')
 
 var native_accessor = {
     send_sms: function (phone, message) {
@@ -22,11 +22,7 @@ var native_accessor = {
         var phone_number = json_message.messages[0].phone ;
 
         var isSignUp = (start_chars=='bm' || start_chars=='BM' || start_chars=='Bm' || start_chars=='bM');
-
-
         var isBiding = (start_chars=='jj' || start_chars=='JJ' || start_chars=='jJ' || start_chars=='Jj');
-
-        console.log('判断过了短信开头')
         if (isSignUp){
             Person.sign_ups_save(json_message);
         }
@@ -38,10 +34,7 @@ var native_accessor = {
         else {
             native_accessor.send_sms(phone_number,'短信格式不正确！');
         }
-
-
     }
-
 };
 
 

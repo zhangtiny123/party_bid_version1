@@ -4,11 +4,11 @@
 
         报名({{number_of_sign}}人）
         <div class="header-right" ng-switch="button_name">
-            <button class="btn-style btn-4" ng-click="start_sign_up()" ng-disabled="is_button_enable()" ng-switch-when="start">开始</button>
-            <button class="btn-style btn-4" ng-click="end_sign_up()" ng-disabled="is_button_enable()" ng-switch-when="end">结束</button>
+            <button class="btn btn-primary" ng-click="start_sign_up()" ng-disabled="is_button_enable()" ng-switch-when="start">开始</button>
+            <button class="btn btn-primary" ng-click="end_sign_up()" ng-disabled="is_button_enable()" ng-switch-when="end">结束</button>
         </div>
         <div class="header-left">
-            <button class=" btn-style btn-4" ng-click="back_to_activityList()">返回</button>
+            <button class="btn btn-primary" ng-click="back_to_activityList()">返回</button>
         </div>
     </header>
     <div class="wrapper">

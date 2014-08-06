@@ -7,7 +7,6 @@ function Biding(biding_name,biding_status){
 }
 
 
-
 Biding.prototype.save_new_biding = function(current_activity_name){
     var biding_item = {'name':this.name,'status':this.status};
     var biding_list = JSON.parse(localStorage[current_activity_name+'-bid']);
@@ -15,8 +14,18 @@ Biding.prototype.save_new_biding = function(current_activity_name){
     localStorage[current_activity_name+'-bid'] = JSON.stringify(biding_list);
 }
 
+Biding.get_biding_list_for_show = function(activity_name,stored_tail) {
+    var biding_list = JSON.parse(localStorage[activity_name+stored_tail]).reverse();
+    for (var i=0; i<biding_list.length; i++){
+        biding_list[i].name = biding_list[i].name.slice(-3);
+    }
+    return biding_list;
+
+}
+
 Biding.get_biding_list = function(activity_name,stored_tail) {
-    return JSON.parse(localStorage[activity_name+stored_tail]).reverse();
+
+    return JSON.parse(localStorage[activity_name+stored_tail]);
 }
 
 Biding.get_biding_status_by_name = function(biding_name) {
@@ -86,6 +95,7 @@ Biding.set_status_by_name = function(biding_name,status_value) {
     for (var i=0; i<current_activity_bid_list.length; i++){
         if (current_activity_bid_list[i].name == biding_name){
             current_activity_bid_list[i].status = status_value;
+
         }
     }
     localStorage[current_activity.name+'-bid'] = JSON.stringify(current_activity_bid_list);
@@ -95,7 +105,7 @@ Biding.has_going_bid_activity = function() {
     var current_biding = Biding.get_biding_bid();
     if (current_biding.length != 0){
         var length_of_biding_name = current_biding.name.length;
-        var current_biding_activity_name = current_biding.name.slice(0,length_of_biding_name-4);
+        var current_biding_activity_name = current_biding.name.slice(0,length_of_biding_name-3);
         if(current_biding.status == 1){
             return current_biding_activity_name;
         }
@@ -109,11 +119,13 @@ Biding.has_going_bid_activity = function() {
 }
 
 Biding.end_bid = function(biding_name) {
+    var current_activity = Activity.get_current_activity();
     Biding.set_bid_start_tag(0);
+
 
     Biding.set_status_by_name(biding_name, 2);
 
-    var current_activity = Activity.get_current_activity();
+
     current_activity.bid_status = 2;
     Activity.set_current_activity(current_activity);
 

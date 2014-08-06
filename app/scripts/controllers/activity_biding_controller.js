@@ -5,6 +5,7 @@
 angular.module('partyBidApp')
     .controller('activityBidingCtrl',function($scope,$location,$routeParams){
 
+
         var bid_name = $routeParams.biding_name;
         var current_activity_name = Activity.get_current_activity().name;
 
@@ -22,7 +23,6 @@ angular.module('partyBidApp')
                 Biding.end_bid(bid_name);
                 Activity.set_activity_bid_status_by_name(current_activity_name,2)
             }
-
         }
 
         $scope.is_end_enable = function() {

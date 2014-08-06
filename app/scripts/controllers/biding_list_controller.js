@@ -8,10 +8,10 @@ angular.module('partyBidApp')
         var passed_activity_name = $routeParams.activity_name;
         var current_activity_name = Activity.get_current_activity().name;
 
-        $scope.bidings = Biding.get_biding_list(passed_activity_name,'-bid');
+        $scope.bidings = Biding.get_biding_list_for_show(passed_activity_name,'-bid');
 
         $scope.click_event = function(biding)  {
-            $location.path('/activity_biding/'+biding.name);
+            $location.path('/activity_biding/'+passed_activity_name+biding.name);
         }
 
 
@@ -24,7 +24,7 @@ angular.module('partyBidApp')
         $scope.start_bid = function() {
             var biding_list = Biding.get_biding_list(passed_activity_name,'-bid');
 
-            var new_biding = new Biding(passed_activity_name+'-竞价'+(biding_list.length+1),1);
+            var new_biding = new Biding(passed_activity_name+'竞价'+(biding_list.length+1),1);
             new_biding.save_new_biding(passed_activity_name);
 
             Activity.set_activity_bid_status_by_name(passed_activity_name,1);
@@ -37,9 +37,6 @@ angular.module('partyBidApp')
             Biding.set_biding_bid(new_biding);
 
             Biding.set_bid_start_tag(1);
-
-
-
 
             $location.path('/activity_biding/'+new_biding.name);
         }

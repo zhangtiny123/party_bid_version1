@@ -7,6 +7,7 @@ function Activity(activity_name, activity_sign_status, activity_bid_status) {
     this.bid_status = activity_bid_status;    //表示活动竞价的不同状态，’0'表示未开始，‘1'表示正在报名，’2'表示活动已结束
 }
 
+
 Activity.prototype.save_new_activity = function() {
     var signed_person_item = {'name':this.name,'sign_status':this.sign_status,'bid_status':this.bid_status};
     var get_saved_activities = JSON.parse(localStorage['activities']);

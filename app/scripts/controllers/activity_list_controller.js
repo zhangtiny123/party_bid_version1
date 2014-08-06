@@ -4,6 +4,9 @@
 'use strict'
 angular.module('partyBidApp')
     .controller('activityListCtrl',function($scope,$location){
+
+
+
         var conner = localStorage.length;
         if (conner==0){
             $location.path('/create_activity');
