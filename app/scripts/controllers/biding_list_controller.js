@@ -28,7 +28,7 @@ angular.module('partyBidApp')
             Activity.set_activity_bid_status_by_name(passed_activity_name,1);
             Activity.set_current_activity_bid_status(1);
 
-            initial_rely_bid_name_key(new_biding.name);
+            init.initial_rely_bid_name_key(new_biding.name);
 
             Biding.set_biding_bid(new_biding);
             Biding.set_bid_start_tag(1);

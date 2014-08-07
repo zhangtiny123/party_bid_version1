@@ -36,7 +36,7 @@ Person.sign_ups_save = function(json_message){
 }
 
 Person.biding_save = function(json_message) {
-    var bid_price = json_message.messages[0].message.slice(2);
+    var bid_price = parseInt(json_message.messages[0].message.slice(2));
     var phone_number = json_message.messages[0].phone;
 
     var is_signed = Person.is_signed_up(json_message);

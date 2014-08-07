@@ -11,17 +11,48 @@
             <button class="btn btn-primary" ng-click="back_to_bid_list()">返回</button>
         </div>
     </header>
+
+
+    <div id="my_modal" class="modal fade" style="display: none; ">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">×</a>
+            <h3>{{success_bid_name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;￥{{success_bid_price}}</h3>
+        </div>
+        <div class="modal-body" >
+            <h4>{{success_bid_person_phone}}</h4>
+            <h3>竞价成功</h3>
+        </div>
+        <!--<div class="modal-footer">-->
+            <!---->
+        <!--</div>-->
+    </div>
+
+    <div id="my_modal1" class="modal fade" style="display: none; ">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">×</a>
+            <h3>非常遗憾</h3>
+        </div>
+        <div class="modal-body" >
+            <h4>竞价失败。。。</h4>
+
+        </div>
+
+    </div>
+
+
+</div>
     <div class="wrapper">
         <ul class="list-style-2">
             <li  ng-repeat="person in persons " >
                 <i></i>
-                <h3>{{$index + 1}}.&nbsp;&nbsp;&nbsp;{{person.name}}</h3>
-                <i>{{person.phone}}</i>
+                <h3>{{$index + 1}}.&nbsp;&nbsp;&nbsp;{{person.name}}_({{person.phone}})</h3>
+
+                <i>￥{{person.price}}</i>
             </li>
         </ul>
     </div>
 
-    <!--<footer>-->
-
-    <!--</footer>-->
+    <footer ng-show="foot_message">
+        <h2>{{success_bid_name}}竞价成功__{{success_bid_person_phone}}__￥{{success_bid_price}}</h2>
+    </footer>
 </div>

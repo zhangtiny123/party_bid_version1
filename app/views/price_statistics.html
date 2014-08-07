@@ -1,0 +1,24 @@
+<div id="biding_result_wrapper" ng-controller="priceResultCtrl">
+
+    <header>
+        {{bid_name}}({{number_of_bid}}人）
+        <div class="header-right">
+            <button class="btn btn-primary" ng-click="count_data_button()">列表</button>
+        </div>
+        <div class="header-left">
+            <button class="btn btn-primary" ng-click="back_to_bid_list()">返回</button>
+        </div>
+    </header>
+    <div class="wrapper">
+        <ul class="list-style-2">
+            <li ng-repeat="item in items ">
+                <h3>￥{{item.price}}</h3>
+                <i>{{item.count}}人</i>
+            </li>
+        </ul>
+    </div>
+
+    <footer >
+        <h2>{{success_bid_name}}竞价成功__{{success_bid_person_phone}}__￥{{success_bid_price}}</h2>
+    </footer>
+</div>
