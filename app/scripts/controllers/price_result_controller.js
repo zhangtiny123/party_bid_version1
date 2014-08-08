@@ -17,9 +17,12 @@ angular.module('partyBidApp')
 
         var bid_result = analysis_of_biding.analyze_bid_data(get_bid_name);
 
-        $scope.success_bid_name = bid_result[0].name;
-        $scope.success_bid_price = bid_result[0].price;
-        $scope.success_bid_person_phone = bid_result[0].phone;
+        if (bid_result != null){
+            $scope.success_bid_name = bid_result[0].name;
+            $scope.success_bid_price = bid_result[0].price;
+            $scope.success_bid_person_phone = bid_result[0].phone;
+        }
+
         var flag = Biding.get_bid_statistics_flag();
 
         if( flag != 'done'){
