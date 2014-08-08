@@ -2,7 +2,7 @@
  * Created by tiny on 14-8-6.
  */
 
-    var init = {
+ var init = {
     initial_no_relied_key:function() {
         localStorage['activities']=JSON.stringify([]);
 
@@ -17,6 +17,8 @@
 
         //作为是否有竞价开始的标志
         localStorage['biding_start_tag'] = JSON.stringify(0);
+
+        localStorage['bid_statistics_flag'] = JSON.stringify([]);
     },
     initial_rely_activity_name_key:function(activity_name) {
         //作为报名者信息存储用
@@ -28,4 +30,6 @@
     initial_rely_bid_name_key:function(bid_name) {
         localStorage[bid_name] = JSON.stringify([]);
     }
+
+
 }

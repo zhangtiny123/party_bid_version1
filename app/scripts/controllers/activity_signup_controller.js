@@ -17,8 +17,8 @@ angular.module('partyBidApp')
             $scope.button_name = 'start';
         }
 
-        $scope.is_button_enable = !((current_activity_sign_status==1 && signing_start_tag_value==1) || (current_activity_bid_status!=1 && signing_start_tag_value==0
-            && !Biding.has_bid_going()));
+        $scope.is_button_enable = !((current_activity_sign_status==1 && signing_start_tag_value==1)
+            || (current_activity_bid_status!=1 && signing_start_tag_value==0&& !Biding.has_bid_going()));
 
         $scope.number_of_sign = Person.read_person_signed_list(current_activity_name).length;
 

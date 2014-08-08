@@ -20,7 +20,6 @@ Biding.get_biding_list_for_show = function(activity_name,stored_tail) {
         biding_list[i].name = biding_list[i].name.slice(-3);
     }
     return biding_list;
-
 }
 
 Biding.get_biding_list = function(activity_name,stored_tail) {
@@ -131,4 +130,12 @@ Biding.end_bid = function(biding_name) {
 
     current_activity.bid_status = 2;
     Activity.set_current_activity(current_activity);
+}
+
+Biding.set_bid_statistics_flag = function(flag) {
+    localStorage['bid_statistics_flag'] = JSON.stringify(flag);
+}
+
+Biding.get_bid_statistics_flag = function() {
+    return JSON.parse(localStorage['bid_statistics_flag']);
 }

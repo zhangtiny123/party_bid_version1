@@ -17,11 +17,12 @@ angular.module('partyBidApp')
         }
 
         $scope.stop_biding = function() {
-            if (confirm('确定要结束此次竞价吗？')){
+            if (confirm('确定要结束此次竞价吗？')) {
                 Biding.end_bid(bid_name);
-                Activity.set_activity_bid_status_by_name(current_activity_name,2)
+                Activity.set_activity_bid_status_by_name(current_activity_name, 2)
+
+                $location.path('/price_result/' + bid_name);
             }
-            $location.path('/price_result/'+bid_name)
         }
 
         $scope.is_end_enable = function() {

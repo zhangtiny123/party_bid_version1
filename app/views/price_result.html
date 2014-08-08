@@ -5,7 +5,7 @@
         {{bid_name}}({{number_of_bid}}人）
         <div class="header-right" >
 
-            <button class="btn btn-primary" ng-click="count_data_button()" ng-disabled="is_button_enable()" >统计</button>
+            <button class="btn btn-primary" ng-click="count_data_button()" >统计</button>
         </div>
         <div class="header-left">
             <button class="btn btn-primary" ng-click="back_to_bid_list()">返回</button>
@@ -13,7 +13,7 @@
     </header>
 
 
-    <div id="my_modal" class="modal fade" style="display: none; ">
+    <div id="my_modal" class="modal hide fade" style="display: none; ">
         <div class="modal-header">
             <a class="close" data-dismiss="modal">×</a>
             <h3>{{success_bid_name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;￥{{success_bid_price}}</h3>
@@ -27,7 +27,7 @@
         <!--</div>-->
     </div>
 
-    <div id="my_modal1" class="modal fade" style="display: none; ">
+    <div id="my_modal1" class="modal hide fade" style="display: none; ">
         <div class="modal-header">
             <a class="close" data-dismiss="modal">×</a>
             <h3>非常遗憾</h3>
@@ -52,7 +52,13 @@
         </ul>
     </div>
 
-    <footer ng-show="foot_message">
-        <h2>{{success_bid_name}}竞价成功__{{success_bid_person_phone}}__￥{{success_bid_price}}</h2>
+    <footer ng-show="foot_message" ng-switch="show_footer_message">
+        <div ng-switch-when="success_message">
+            <h2>{{success_bid_name}}竞价成功__{{success_bid_person_phone}}__￥{{success_bid_price}}</h2>
+        </div>
+        <div ng-switch-when="fail_message">
+            <h2>非常遗憾，竞价失败。。。</h2>
+        </div>
+
     </footer>
 </div>

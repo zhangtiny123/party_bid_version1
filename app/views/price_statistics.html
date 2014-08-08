@@ -1,4 +1,4 @@
-<div id="biding_result_wrapper" ng-controller="priceResultCtrl">
+<div id="biding_statistics_wrapper" ng-controller="priceStatisticCtrl">
 
     <header>
         {{bid_name}}({{number_of_bid}}人）
@@ -18,7 +18,13 @@
         </ul>
     </div>
 
-    <footer >
-        <h2>{{success_bid_name}}竞价成功__{{success_bid_person_phone}}__￥{{success_bid_price}}</h2>
+    <footer ng-show="foot_message" ng-switch="show_footer_message">
+        <div ng-switch-when="success_message">
+            <h2>{{success_bid_name}}竞价成功__{{success_bid_person_phone}}__￥{{success_bid_price}}</h2>
+        </div>
+        <div ng-switch-when="fail_message">
+            <h2>非常遗憾，竞价失败。。。</h2>
+        </div>
+
     </footer>
 </div>
