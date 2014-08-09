@@ -22,7 +22,7 @@ angular.module('partyBidApp')
                 init.initial_rely_activity_name_key($scope.activity_name);
                 $location.path('/activity_sign_up/'+activity_created.name);
             }
-        }
+        };
 
         $scope.back_to_list = function() {
             $location.path('/activity_list')
