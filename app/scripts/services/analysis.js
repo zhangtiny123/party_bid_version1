@@ -3,20 +3,10 @@
  */
 
 
-
-//        var result = _.sortBy(bid_data,function(bid){
-//
-//        console.log(result)
-//        var result1=_.groupBy(result,function(hehe){return hehe.price});
-//        console.log(result1);
-//        var result2 = _.find(result1,function(value,key){return value.length==1});
-//        console.log(result2);
-
 var analysis_of_biding = {
     analyze_bid_data : function(bid_name) {
         var bid_data = Biding.get_bid_person_list(bid_name);
         var result = _.sortBy(bid_data,function(bid){return bid.price});
-        console.log(result);
         var result1=_.groupBy(result,function(temp){return temp.price});
        var result2 = _.find(result1,function(value,key){return value.length==1});
         return result2;

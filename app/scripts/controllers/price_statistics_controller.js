@@ -7,7 +7,6 @@ angular.module('partyBidApp')
     .controller('priceStatisticCtrl',function($scope,$location,$routeParams){
         var biding_name = $routeParams.biding_name;
 
-        console.log('biding_name:'+biding_name);
         $scope.bid_name =  biding_name.slice(-3);
         $scope.number_of_bid = Biding.get_bid_person_list(biding_name).length;
         $scope.foot_message = true;
@@ -17,7 +16,6 @@ angular.module('partyBidApp')
         $scope.items = analysis_of_biding.make_price_statistic(biding_name);
 
         var bid_result = analysis_of_biding.analyze_bid_data(biding_name);
-        console.log('bid_result:'+bid_result);
 
         if(bid_result != null){
             $scope.show_footer_message = 'success_message';
