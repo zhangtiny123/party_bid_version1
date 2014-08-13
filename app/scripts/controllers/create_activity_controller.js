@@ -1,13 +1,13 @@
 /**
  * Created by tiny on 14-7-15.
  */
-'use strict'
+'use strict';
 angular.module('partyBidApp')
     .controller('createActivityCtrl',function($scope,$location){
         if(localStorage.length==0){
             init.initial_no_relied_key();
         }
-        $scope.is_showing = !(Activity.activity_list_for_show().length==0)
+        $scope.is_showing = !(Activity.activity_list_for_show().length==0);
 
         $scope.add_new_activity = function(){
             var activity_created = new Activity($scope.activity_name,0,0);
@@ -25,6 +25,6 @@ angular.module('partyBidApp')
         };
 
         $scope.back_to_list = function() {
-            $location.path('/activity_list')
+            $location.path('/activity_list');
         }
     });

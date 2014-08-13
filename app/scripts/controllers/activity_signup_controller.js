@@ -1,7 +1,7 @@
 /**
  * Created by tiny on 14-7-15.
  */
-'use strict'
+'use strict';
 angular.module('partyBidApp')
     .controller('activitySignUpCtrl',function($scope,$location,$routeParams){
 
@@ -27,7 +27,7 @@ angular.module('partyBidApp')
         $scope.start_sign_up = function() {
             $scope.button_name = 'end';
             Activity.activity_sign_start();
-        }
+        };
 
         $scope.end_sign_up = function() {
             if (confirm('确定要结束此次报名吗？')){
@@ -38,15 +38,15 @@ angular.module('partyBidApp')
             else{
                 $scope.buttonName = 'end';
             }
-        }
+        };
 
         $scope.back_to_activityList = function() {
             $location.path('/activity_list');
-        }
+        };
 
         $scope.click_sign_up = function(){
 
-        }
+        };
 
         $scope.click_biding = function(){
             $location.path('/biding_list/'+current_activity_name);

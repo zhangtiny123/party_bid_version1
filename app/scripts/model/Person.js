@@ -33,7 +33,7 @@ Person.sign_ups_save = function(json_message){
             native_accessor.send_sms(phone_number,'你已经报名成功，请勿重复报名');
         }
     }
-}
+};
 
 Person.biding_save = function(json_message) {
     var bid_price = parseInt(json_message.messages[0].message.slice(2));
@@ -61,7 +61,7 @@ Person.biding_save = function(json_message) {
             native_accessor.send_sms(phone_number,'恭喜！您已出价成功！');
         }
     }
-}
+};
 
 Person.get_signed_name = function(json_message) {
     var phone_number = json_message.messages[0].phone;
@@ -73,7 +73,7 @@ Person.get_signed_name = function(json_message) {
             return activity_signed_list[i].name;
         }
     }
-}
+};
 
 Person.is_signed_up = function(json_message) {
     var phone_number = json_message.messages[0].phone;
@@ -86,7 +86,7 @@ Person.is_signed_up = function(json_message) {
         }
     }
     return false;
-}
+};
 
 Person.is_person_repeated = function(json_message) {
     var current_activity = Activity.get_current_activity();
@@ -96,7 +96,7 @@ Person.is_person_repeated = function(json_message) {
         var current_list = Person.read_person_signed_list(current_activity.name);
     }
     else if (current_activity.bid_status == 1) {
-        var current_list = JSON.parse(localStorage[Biding.get_biding_bid().name]);
+        current_list = JSON.parse(localStorage[Biding.get_biding_bid().name]);
     }
 
     for (var i=0; i < current_list.length; i++){
@@ -105,15 +105,13 @@ Person.is_person_repeated = function(json_message) {
         }
     }
     return false;
-}
+};
 
 
 
 Person.read_person_signed_list = function(current_activity_name) {
-    var read_temp1 = JSON.parse(localStorage[current_activity_name+'-sign_up']);
-
-    return read_temp1;
-}
+    return JSON.parse(localStorage[current_activity_name+'-sign_up']);
+};
 
 
 Person.signed_person_list_pageRefresh = function() {
@@ -128,7 +126,7 @@ Person.signed_person_list_pageRefresh = function() {
             scope.number_of_sign=result.length;
         })
     }
-}
+};
 
 Person.biding_person_list_pageRefresh = function() {
     var refresh_page = document.getElementById("biding_wrapper");
@@ -142,4 +140,4 @@ Person.biding_person_list_pageRefresh = function() {
             scope.number_of_bid = result.length;
         })
     }
-}
+};

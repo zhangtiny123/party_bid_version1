@@ -817,20 +817,7 @@ footer {
 	-webkit-text-fill-color: transparent;
 }
 
-.message {
-    color: red;
-    font-size: 20px;
-}
 
-.true {
-    margin-bottom: 10px;
-    height: 36px;
-    /*padding:0 1px;*/
-    /*border-bottom:2px solid #ccc;*/
-    /*border-top:2px solid #fff;*/
-    background-color: #ffff00;
-    !important;
-}
 
 
 

@@ -1,7 +1,7 @@
 /**
  * Created by tiny on 14-8-6.
  */
-'use strict'
+'use strict';
 
 angular.module('partyBidApp')
     .controller('priceStatisticCtrl',function($scope,$location,$routeParams){
@@ -31,7 +31,7 @@ angular.module('partyBidApp')
         $scope.back_to_bid_list = function() {
             Biding.set_bid_statistics_flag('undone');
             $location.path('/biding_list/' + Activity.get_current_activity().name);
-        }
+        };
 
         $scope.count_data_button = function() {
             $location.path('/price_result/'+biding_name);

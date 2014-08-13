@@ -1,7 +1,7 @@
 /**
  * Created by tiny on 14-7-15.
  */
-'use strict'
+'use strict';
 angular.module('partyBidApp')
     .controller('activityListCtrl',function($scope,$location){
 
@@ -19,7 +19,7 @@ angular.module('partyBidApp')
 
         $scope.create_activity = function () {
             $location.path('/create_activity');
-        }
+        };
 
         $scope.click_event = function (value1) {
             var p_temp = new Activity(value1.name, value1.sign_status, value1.bid_status);

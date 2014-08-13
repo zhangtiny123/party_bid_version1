@@ -1,7 +1,7 @@
 /**
  * Created by tiny on 14-7-30.
  */
-'use strict'
+'use strict';
 angular.module('partyBidApp')
     .controller('bidingListCtrl',function($scope,$location,$routeParams){
 
@@ -12,11 +12,11 @@ angular.module('partyBidApp')
 
         $scope.click_event = function(biding)  {
             $location.path('/activity_biding/'+passed_activity_name+biding.name);
-        }
+        };
 
         $scope.back_to_activity_list = function() {
             $location.path('/activity_list');
-        }
+        };
 
         $scope.is_start_button_enable = (Biding.has_bid_going() || Activity.find_activity_sign_status_by_name(current_activity_name)!=2);
 
@@ -34,7 +34,7 @@ angular.module('partyBidApp')
             Biding.set_bid_start_tag(1);
 
             $location.path('/activity_biding/'+new_biding.name);
-        }
+        };
 
         $scope.click_sign_up = function() {
             $location.path('/activity_sign_up/'+passed_activity_name);

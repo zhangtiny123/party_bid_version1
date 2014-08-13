@@ -56,12 +56,7 @@ angular.module('partyBidApp')
 
         }
 
-
-
         $scope.persons = analysis_of_biding.sort_by_price(get_bid_name);
-
-
-
 
         $scope.is_button_enable = function() {
 
