@@ -68,11 +68,9 @@ Person.get_signed_name = function(json_message) {
     var current_activity = Activity.get_current_activity();
     var activity_signed_list = Person.read_person_signed_list(current_activity.name);
 
-    for (var i=0; i<activity_signed_list.length; i++){
-        if (activity_signed_list[i].phone == phone_number){
-            return activity_signed_list[i].name;
-        }
-    }
+    return _.find(activity_signed_list, function(signed_person){
+        return signed_person.phone == phone_number;
+    }).name;
 };
 
 Person.is_signed_up = function(json_message) {
@@ -80,12 +78,9 @@ Person.is_signed_up = function(json_message) {
     var current_activity = Activity.get_current_activity();
     var activity_signed_list = Person.read_person_signed_list(current_activity.name);
 
-    for (var i=0; i<activity_signed_list.length; i++){
-        if (activity_signed_list[i].phone == phone_number){
-            return true;
-        }
-    }
-    return false;
+    return _.find(activity_signed_list, function(signed_person){
+        return signed_person.phone == phone_number;
+    }) != undefined;
 };
 
 Person.is_person_repeated = function(json_message) {
@@ -99,12 +94,9 @@ Person.is_person_repeated = function(json_message) {
         current_list = JSON.parse(localStorage[Biding.get_biding_bid().name]);
     }
 
-    for (var i=0; i < current_list.length; i++){
-        if ( current_list[i].phone == phone_number){
-            return true;
-        }
-    }
-    return false;
+    return _.find(current_list, function(list_item){
+        return list_item.phone == phone_number;
+    }) != undefined;
 };
 
 

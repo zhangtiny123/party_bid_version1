@@ -13,8 +13,6 @@ angular.module('partyBidApp')
 
         var signing_activity_status = Activity.get_current_activity().sign_status;
 
-        $scope.current_biding_activity = Biding.has_going_bid_activity();
-
         $scope.is_create_button_enable = (signing_activity_status == 1 || Biding.has_bid_going());
 
         $scope.create_activity = function () {

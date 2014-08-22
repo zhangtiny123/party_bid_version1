@@ -38,48 +38,32 @@ Activity.set_current_activity_sign_status = function(status_value) {
 
 Activity.find_activity_sign_status_by_name = function(activity_name) {
     var activities = JSON.parse(localStorage['activities']);
-
-    for (var i=0; i<activities.length; i++){
-        if (activities[i].name == activity_name){
-            return activities[i].sign_status;
-        }
-    }
-    return null;
+    return _.find(activities, function(activity){
+        return activity.name == activity_name;
+    }).sign_status;
 };
 
 Activity.set_activity_sign_status_by_name = function(activity_name,sign_status_value) {
-
-
     var activities = JSON.parse(localStorage['activities']);
-
-    for (var i=0; i<activities.length; i++){
-        if (activities[i].name == activity_name){
-            activities[i].sign_status = sign_status_value;
-
-        }
-    }
+    _.find(activities, function(activity){
+        return activity.name == activity_name;
+    }).sign_status = sign_status_value;
     localStorage['activities'] = JSON.stringify(activities);
 };
 
 
 Activity.find_activity_bid_status_by_name = function(activity_name) {
     var activities = JSON.parse(localStorage['activities']);
-
-    for (var i=0; i<activities.length; i++){
-        if (activities[i].name == activity_name){
-            return activities[i].bid_status;
-        }
-    }
-    return null;
+    return _.find(activities, function(activity){
+        return activity.name == activity_name;
+    }).bid_status;
 };
 
 Activity.set_activity_bid_status_by_name = function(activity_name,bid_status_value) {
     var activities = JSON.parse(localStorage['activities']);
-    for (var i=0; i<activities.length; i++){
-        if (activities[i].name == activity_name){
-            activities[i].bid_status = bid_status_value;
-        }
-    }
+    _.find(activities, function(activity){
+        return activity.name == activity_name;
+    }).bid_status = bid_status_value;
     localStorage['activities'] = JSON.stringify(activities);
 };
 
@@ -101,7 +85,7 @@ Activity.set_signing_start_tag = function(tag_value) {
 };
 
 Activity.set_activity_signed_list = function(current_activity_name, person_item) {
-    var result = Person.read_person_signed_list(current_activity_name)
+    var result = Person.read_person_signed_list(current_activity_name);
     result.push(person_item);
     localStorage[current_activity_name+'-sign_up'] = JSON.stringify(result);
 };
@@ -127,17 +111,14 @@ Activity.activity_sign_end = function() {
 };
 
 Activity.is_activity_repeated = function(new_activity) {
-    var get_saved_activities = JSON.parse(localStorage['activities']);;
-    for (var i=0; i<get_saved_activities.length; i++){
-        if (get_saved_activities[i].name == new_activity.name){
-            return true;
-        }
-    }
-    return false;
+    var activities = JSON.parse(localStorage['activities']);
+    return _.find(activities, function(activity){
+        return activity.name == new_activity.name;
+    }) != undefined;
 };
 
 Activity.has_activity_signing = function() {
-    var flag = JSON.parse(localStorage['signing_start_tag'])
+    var flag = JSON.parse(localStorage['signing_start_tag']);
 
     return flag == 1;
 };
