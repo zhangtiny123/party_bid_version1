@@ -27,18 +27,18 @@ angular.module('partyBidApp')
 
         if( flag != 'done'){
             if(bid_result != null){
-                $("#my_modal").modal('show',{backdrop:false});
+                $("#my_success_modal").modal('show',{backdrop:false});
                 $timeout(function(){
-                    $("#my_modal").modal("hide");
+                    $("#my_success_modal").modal("hide");
                     $scope.foot_message = true;
                     $scope.show_footer_message = 'success_message';
                 },3000);
 
             }
             else{
-                $("#my_modal1").modal('show',{backdrop:false});
+                $("#my_failure_modal").modal('show',{backdrop:false});
                 $timeout(function(){
-                    $("#my_modal1").modal("hide");
+                    $("#my_failure_modal").modal("hide");
                     $scope.foot_message = true;
                     $scope.show_footer_message = 'fail_message';
                 },3000);
